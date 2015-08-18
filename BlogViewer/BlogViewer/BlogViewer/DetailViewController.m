@@ -111,7 +111,7 @@
                 float ptX = [[components objectAtIndex:3]floatValue];
                 float ptY = [[components objectAtIndex:4]floatValue];
                 NSLog(@"touch point (%f, %f)", ptX, ptY);
-                
+
                 NSString *js = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).tagName", ptX, ptY];
                 NSString * tagName = [self.detailWebView stringByEvaluatingJavaScriptFromString:js];
                 _imgURL = nil;
