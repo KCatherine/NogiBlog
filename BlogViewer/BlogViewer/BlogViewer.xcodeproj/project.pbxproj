@@ -11,6 +11,7 @@
 		3922DAC71B6F0A0E00926C01 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3922DAC61B6F0A0E00926C01 /* Reachability.m */; };
 		3922DACB1B6F2C7700926C01 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3922DACA1B6F2C7700926C01 /* Images.xcassets */; };
 		3922DACD1B6F2DCA00926C01 /* Nogizaka46.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3922DACC1B6F2DCA00926C01 /* Nogizaka46.jpg */; };
+		397AF2911BA25CC500C93CEE /* BlogXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 397AF2901BA25CC500C93CEE /* BlogXMLParser.m */; };
 		39D553B81B70F3FC00C0E061 /* IMG_Staff.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 39D553B71B70F3FC00C0E061 /* IMG_Staff.JPG */; };
 		8EEBD3C81B6C670F005F5350 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEBD3C71B6C670F005F5350 /* main.m */; };
 		8EEBD3CB1B6C670F005F5350 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEBD3CA1B6C670F005F5350 /* AppDelegate.m */; };
@@ -76,6 +77,8 @@
 		3922DAC61B6F0A0E00926C01 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		3922DACA1B6F2C7700926C01 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3922DACC1B6F2DCA00926C01 /* Nogizaka46.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Nogizaka46.jpg; sourceTree = "<group>"; };
+		397AF28F1BA25CC500C93CEE /* BlogXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlogXMLParser.h; sourceTree = "<group>"; };
+		397AF2901BA25CC500C93CEE /* BlogXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlogXMLParser.m; sourceTree = "<group>"; };
 		39D553B71B70F3FC00C0E061 /* IMG_Staff.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_Staff.JPG; sourceTree = "<group>"; };
 		8EEBD3C21B6C670F005F5350 /* BlogViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlogViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EEBD3C61B6C670F005F5350 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -180,6 +183,8 @@
 				8EEBD3CA1B6C670F005F5350 /* AppDelegate.m */,
 				8EEBD3CC1B6C670F005F5350 /* ViewController.h */,
 				8EEBD3CD1B6C670F005F5350 /* ViewController.m */,
+				397AF28F1BA25CC500C93CEE /* BlogXMLParser.h */,
+				397AF2901BA25CC500C93CEE /* BlogXMLParser.m */,
 				8EEBD3F11B6C92DE005F5350 /* DetailViewController.h */,
 				8EEBD3F21B6C92DE005F5350 /* DetailViewController.m */,
 				8EEBD3CF1B6C670F005F5350 /* Main.storyboard */,
@@ -310,7 +315,7 @@
 		8EEBD3BA1B6C670F005F5350 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = YangJing;
 				TargetAttributes = {
 					8EEBD3C11B6C670F005F5350 = {
@@ -407,6 +412,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				397AF2911BA25CC500C93CEE /* BlogXMLParser.m in Sources */,
 				8EEBD3ED1B6C79CD005F5350 /* BlogTitleTableViewCell.m in Sources */,
 				8EEBD3CE1B6C670F005F5350 /* ViewController.m in Sources */,
 				8EEBD3CB1B6C670F005F5350 /* AppDelegate.m in Sources */,
@@ -475,6 +481,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -542,6 +549,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BlogViewer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "per.yj.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -555,6 +563,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BlogViewer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "per.yj.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -574,6 +583,7 @@
 				);
 				INFOPLIST_FILE = BlogViewerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "per.yj.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BlogViewer.app/BlogViewer";
 			};
@@ -589,6 +599,7 @@
 				);
 				INFOPLIST_FILE = BlogViewerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "per.yj.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BlogViewer.app/BlogViewer";
 			};

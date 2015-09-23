@@ -10,7 +10,9 @@
 #import "DetailViewController.h"
 #import "BlogTitleTableViewCell.h"
 #import "Reachability.h"
+#import "BlogXMLParser.h"
 
+#define blogXMLString @"http://blog.nogizaka46.com/atom.xml"
 #define blogUrlString @"http://blog.nogizaka46.com/smph/?p=%d"
 #define blogCatchPattern @"<td class=\"heading\"><span class=\"author\">(.*?)</span> <span class=\"entrytitle\"><a href=\"(.*?)\" rel=\"bookmark\">(.*?)</a></span></td>.*?<div class=\"kijifoot\">(.*?)｜.*?</div>"
 
@@ -18,6 +20,9 @@
 
 @property (strong, nonatomic) NSString *htmlCache;
 @property (strong, nonatomic) NSArray *catchedBlogs;
+/*
+@property (strong, nonatomic) NSMutableArray *blogs;
+*/
 @property (strong, nonatomic) NSDictionary *nameWithIcon;
 @property (strong, nonatomic) NSArray *memberNameFromPlist;
 @property (strong, nonatomic) NSArray *memberIconFromPlist;
@@ -39,11 +44,20 @@
     self.nameWithIcon = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
     self.memberNameFromPlist = [self.nameWithIcon objectForKey:@"name"];
     self.memberIconFromPlist = [self.nameWithIcon objectForKey:@"icon"];
-    
+
     if ([self isConnectionAvailable]) {
         [self showActivityIndicatorViewInNavigationItem];
         [self catchHTMLBlogs:1];
     }
+
+/*
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reloadView:)
+                                                 name:@"reloadViewNotification"
+                                               object:nil];
+    BlogXMLParser *parser = [BlogXMLParser new];
+    [parser start];
+*/
 }
 
 - (void)didReceiveMemoryWarning {
@@ -84,6 +98,7 @@
 }
 
 - (IBAction)jumpToBlog:(id)sender {
+    
     UIActionSheet* sheet = [[UIActionSheet alloc]initWithTitle:@"选择你想查看的页面"
                                                       delegate:self
                                              cancelButtonTitle:@"取消"
@@ -91,6 +106,7 @@
                                              otherButtonTitles:@"第1页", @"第2页", @"第3页", @"第4页", nil];
     sheet.cancelButtonIndex = sheet.numberOfButtons - 1;
     [sheet showInView:[UIApplication sharedApplication].keyWindow];
+
 }
 
 
@@ -130,6 +146,7 @@
     self.navigationItem.prompt = @"数据加载中...";
 }
 
+
 - (void)reloadView:(NSError *)connectionError {
     if (!connectionError) {
         self.navigationItem.prompt = nil;
@@ -139,10 +156,19 @@
     
 }
 
+/*
+- (void)reloadView:(NSNotification *)notification {
+    NSMutableArray *resList = [notification object];
+    self.blogs = resList;
+    [self.tableView reloadData];
+}
+*/
+
 #pragma marks
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section {
     return [self.catchedBlogs count];
+//    return self.blogs.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -150,11 +176,17 @@
     static NSString *cellIdentifier = @"BlogTitleCell";
     BlogTitleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     NSUInteger row = [indexPath row];
-    
+
     cell.memberName.text = [self.htmlCache substringWithRange:[[self.catchedBlogs objectAtIndex:row] rangeAtIndex:1]];
     cell.blogTitle.text = [self.htmlCache substringWithRange:[[self.catchedBlogs objectAtIndex:row] rangeAtIndex:3]];
     cell.releaseTime.text = [self.htmlCache substringWithRange:[[self.catchedBlogs objectAtIndex:row] rangeAtIndex:4]];
-    
+
+/*
+    NSMutableDictionary *detailOfBlog = self.blogs[row];
+    cell.memberName.text = [detailOfBlog objectForKey:@"blogAuthor"];
+    cell.blogTitle.text = [detailOfBlog objectForKey:@"blogTitle"];
+    cell.releaseTime.text = [detailOfBlog objectForKey:@"blogTime"];
+*/
     NSUInteger nameAtRow = [self.memberNameFromPlist indexOfObject:cell.memberName.text];
     NSString *imagePath = [self.memberIconFromPlist objectAtIndex:nameAtRow];
     imagePath = [imagePath stringByAppendingString:@".JPG"];
@@ -168,8 +200,13 @@
         DetailViewController *detailViewController = segue.destinationViewController;
         NSInteger selectedIndex = [[self.tableView indexPathForSelectedRow] row];
         self.urlString = [self.htmlCache substringWithRange:[[self.catchedBlogs objectAtIndex:selectedIndex] rangeAtIndex:2]];
+        
+//        self.urlString = [[self.blogs objectAtIndex:selectedIndex] objectForKey:@"blogLink"];
+        
         detailViewController.blogURL = self.urlString;
         detailViewController.title = [self.htmlCache substringWithRange:[[self.catchedBlogs objectAtIndex:selectedIndex] rangeAtIndex:1]];
+        
+//        detailViewController.title = [[self.blogs objectAtIndex:selectedIndex] objectForKey:@"blogAuthor"];
     }
 }
 
