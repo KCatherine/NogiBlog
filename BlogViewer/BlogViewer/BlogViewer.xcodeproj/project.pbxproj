@@ -155,6 +155,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		39C727831BB43E8100DF7473 /* XMLParser */ = {
+			isa = PBXGroup;
+			children = (
+				397AF28F1BA25CC500C93CEE /* BlogXMLParser.h */,
+				397AF2901BA25CC500C93CEE /* BlogXMLParser.m */,
+			);
+			name = XMLParser;
+			sourceTree = "<group>";
+		};
 		8EEBD3B91B6C670F005F5350 = {
 			isa = PBXGroup;
 			children = (
@@ -183,8 +192,6 @@
 				8EEBD3CA1B6C670F005F5350 /* AppDelegate.m */,
 				8EEBD3CC1B6C670F005F5350 /* ViewController.h */,
 				8EEBD3CD1B6C670F005F5350 /* ViewController.m */,
-				397AF28F1BA25CC500C93CEE /* BlogXMLParser.h */,
-				397AF2901BA25CC500C93CEE /* BlogXMLParser.m */,
 				8EEBD3F11B6C92DE005F5350 /* DetailViewController.h */,
 				8EEBD3F21B6C92DE005F5350 /* DetailViewController.m */,
 				8EEBD3CF1B6C670F005F5350 /* Main.storyboard */,
@@ -192,6 +199,7 @@
 				8EEBD3EB1B6C79CD005F5350 /* BlogTitleTableViewCell.h */,
 				8EEBD3EC1B6C79CD005F5350 /* BlogTitleTableViewCell.m */,
 				3922DACA1B6F2C7700926C01 /* Images.xcassets */,
+				39C727831BB43E8100DF7473 /* XMLParser */,
 				8EEBD3C51B6C670F005F5350 /* Supporting Files */,
 			);
 			path = BlogViewer;
