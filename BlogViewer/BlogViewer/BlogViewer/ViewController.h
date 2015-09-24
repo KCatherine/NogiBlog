@@ -10,7 +10,6 @@
 
 @interface ViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSString *urlString;
 
 @end

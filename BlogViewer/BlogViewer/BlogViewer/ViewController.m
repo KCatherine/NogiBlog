@@ -98,7 +98,7 @@
 }
 
 - (IBAction)jumpToBlog:(id)sender {
-    
+/*
     UIActionSheet* sheet = [[UIActionSheet alloc]initWithTitle:@"选择你想查看的页面"
                                                       delegate:self
                                              cancelButtonTitle:@"取消"
@@ -106,6 +106,43 @@
                                              otherButtonTitles:@"第1页", @"第2页", @"第3页", @"第4页", nil];
     sheet.cancelButtonIndex = sheet.numberOfButtons - 1;
     [sheet showInView:[UIApplication sharedApplication].keyWindow];
+*/
+
+    UIAlertController *sheet = [UIAlertController alertControllerWithTitle:@"选择你想查看的页面"
+                                                                   message:nil
+                                                            preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *pageOne = [UIAlertAction actionWithTitle:@"第一页"
+                                                      style:UIAlertActionStyleDefault
+                                                    handler:^(UIAlertAction *action) {
+                                                        if ([self isConnectionAvailable]) {
+                                                            [self showActivityIndicatorViewInNavigationItem];
+                                                            [self catchHTMLBlogs:1];
+                                                        }
+                                                    }];
+    UIAlertAction *pageTwo = [UIAlertAction actionWithTitle:@"第二页"
+                                                      style:UIAlertActionStyleDefault
+                                                    handler:^(UIAlertAction *action) {
+                                                        if ([self isConnectionAvailable]) {
+                                                            [self showActivityIndicatorViewInNavigationItem];
+                                                            [self catchHTMLBlogs:2];
+                                                        }
+                                                    }];
+    UIAlertAction *pageThree = [UIAlertAction actionWithTitle:@"第三页"
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction *action) {
+                                                          if ([self isConnectionAvailable]) {
+                                                              [self showActivityIndicatorViewInNavigationItem];
+                                                              [self catchHTMLBlogs:3];
+                                                          }
+                                                      }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:nil];
+    [sheet addAction:pageOne];
+    [sheet addAction:pageTwo];
+    [sheet addAction:pageThree];
+    [sheet addAction:cancelAction];
+    [self presentViewController:sheet animated:YES completion:nil];
 
 }
 
@@ -214,7 +251,7 @@
     [self.tableView deselectRowAtIndexPath:indexPath
                                   animated:YES];
 }
-
+/*
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (actionSheet.numberOfButtons - 1 == buttonIndex) {
         return;
@@ -223,5 +260,5 @@
         [self catchHTMLBlogs:buttonIndex + 1];
     }
 }
-
+*/
 @end
