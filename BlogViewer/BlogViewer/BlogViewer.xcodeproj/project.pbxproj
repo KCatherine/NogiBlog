@@ -10,9 +10,9 @@
 		3922DAC41B6F06B400926C01 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3922DAC31B6F06B400926C01 /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		3922DAC71B6F0A0E00926C01 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3922DAC61B6F0A0E00926C01 /* Reachability.m */; };
 		3922DACB1B6F2C7700926C01 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3922DACA1B6F2C7700926C01 /* Images.xcassets */; };
-		3922DACD1B6F2DCA00926C01 /* Nogizaka46.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 3922DACC1B6F2DCA00926C01 /* Nogizaka46.JPG */; };
 		397AF2911BA25CC500C93CEE /* BlogXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 397AF2901BA25CC500C93CEE /* BlogXMLParser.m */; };
 		39C727801BB42F3600DF7473 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39C7277F1BB42F3600DF7473 /* Launch Screen.storyboard */; settings = {ASSET_TAGS = (); }; };
+		39C727871BB4F77F00DF7473 /* Nogizaka46.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 39C727861BB4F77F00DF7473 /* Nogizaka46.PNG */; settings = {ASSET_TAGS = (); }; };
 		39D553B81B70F3FC00C0E061 /* IMG_Staff.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 39D553B71B70F3FC00C0E061 /* IMG_Staff.JPG */; };
 		8EEBD3C81B6C670F005F5350 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEBD3C71B6C670F005F5350 /* main.m */; };
 		8EEBD3CB1B6C670F005F5350 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEBD3CA1B6C670F005F5350 /* AppDelegate.m */; };
@@ -76,10 +76,10 @@
 		3922DAC51B6F0A0E00926C01 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		3922DAC61B6F0A0E00926C01 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		3922DACA1B6F2C7700926C01 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		3922DACC1B6F2DCA00926C01 /* Nogizaka46.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Nogizaka46.JPG; sourceTree = "<group>"; };
 		397AF28F1BA25CC500C93CEE /* BlogXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlogXMLParser.h; sourceTree = "<group>"; };
 		397AF2901BA25CC500C93CEE /* BlogXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlogXMLParser.m; sourceTree = "<group>"; };
 		39C7277F1BB42F3600DF7473 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		39C727861BB4F77F00DF7473 /* Nogizaka46.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Nogizaka46.PNG; sourceTree = "<group>"; };
 		39D553B71B70F3FC00C0E061 /* IMG_Staff.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_Staff.JPG; sourceTree = "<group>"; };
 		8EEBD3C21B6C670F005F5350 /* BlogViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlogViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EEBD3C61B6C670F005F5350 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -236,7 +236,7 @@
 		8EEBD3F61B6DA9F1005F5350 /* 2015_08 */ = {
 			isa = PBXGroup;
 			children = (
-				3922DACC1B6F2DCA00926C01 /* Nogizaka46.JPG */,
+				39C727861BB4F77F00DF7473 /* Nogizaka46.PNG */,
 				39D553B71B70F3FC00C0E061 /* IMG_Staff.JPG */,
 				8EEBD3F71B6DA9F1005F5350 /* IMG_0231.JPG */,
 				8EEBD3F81B6DA9F1005F5350 /* IMG_0232.JPG */,
@@ -386,7 +386,6 @@
 				8EEBD43C1B6DA9F1005F5350 /* IMG_0263.JPG in Resources */,
 				8EEBD4321B6DA9F1005F5350 /* IMG_0253.JPG in Resources */,
 				8EEBD4291B6DA9F1005F5350 /* IMG_0244.JPG in Resources */,
-				3922DACD1B6F2DCA00926C01 /* Nogizaka46.JPG in Resources */,
 				8EEBD41C1B6DA9F1005F5350 /* IMG_0231.JPG in Resources */,
 				8EEBD4301B6DA9F1005F5350 /* IMG_0251.JPG in Resources */,
 				8EEBD41E1B6DA9F1005F5350 /* IMG_0233.JPG in Resources */,
@@ -403,6 +402,7 @@
 				8EEBD43B1B6DA9F1005F5350 /* IMG_0262.JPG in Resources */,
 				8EEBD4401B6DA9F1005F5350 /* IMG_0267.JPG in Resources */,
 				8EEBD4341B6DA9F1005F5350 /* IMG_0255.JPG in Resources */,
+				39C727871BB4F77F00DF7473 /* Nogizaka46.PNG in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
