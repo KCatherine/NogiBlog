@@ -212,7 +212,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="wVv-bO-WKu">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="wVv-bO-WKu">
                                 <rect key="frame" x="290" y="300" width="20" height="20"/>
                             </activityIndicatorView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UhA-I0-ceU">
@@ -237,7 +237,7 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gHr-lm-sD5">
+                            <webView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gHr-lm-sD5">
                                 <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
@@ -265,16 +265,16 @@
                                 <exclude reference="UhA-I0-ceU"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="BfC-R4-qhb"/>
-                                <exclude reference="L29-j2-3dM"/>
-                                <exclude reference="N4j-8F-XUf"/>
-                                <exclude reference="xrE-D7-Ikc"/>
                                 <exclude reference="0od-59-rSs"/>
                                 <exclude reference="N4S-ts-vZL"/>
                                 <exclude reference="RFQ-vd-kYM"/>
                                 <exclude reference="StY-Jt-DDy"/>
                                 <exclude reference="ZiE-nQ-NDq"/>
                                 <exclude reference="yUH-4V-pKn"/>
+                                <exclude reference="BfC-R4-qhb"/>
+                                <exclude reference="L29-j2-3dM"/>
+                                <exclude reference="N4j-8F-XUf"/>
+                                <exclude reference="xrE-D7-Ikc"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -282,6 +282,12 @@
                                 <include reference="UhA-I0-ceU"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="0od-59-rSs"/>
+                                <include reference="N4S-ts-vZL"/>
+                                <include reference="RFQ-vd-kYM"/>
+                                <include reference="StY-Jt-DDy"/>
+                                <include reference="ZiE-nQ-NDq"/>
+                                <include reference="yUH-4V-pKn"/>
                                 <include reference="BfC-R4-qhb"/>
                                 <exclude reference="KGp-hM-Wbn"/>
                                 <exclude reference="L29-j2-3dM"/>
@@ -290,12 +296,6 @@
                                 <exclude reference="xJO-dd-rQb"/>
                                 <exclude reference="eyM-p1-KcR"/>
                                 <include reference="xrE-D7-Ikc"/>
-                                <include reference="0od-59-rSs"/>
-                                <include reference="N4S-ts-vZL"/>
-                                <include reference="RFQ-vd-kYM"/>
-                                <include reference="StY-Jt-DDy"/>
-                                <include reference="ZiE-nQ-NDq"/>
-                                <include reference="yUH-4V-pKn"/>
                             </mask>
                         </variation>
                     </view>
