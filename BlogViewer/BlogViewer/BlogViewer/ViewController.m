@@ -98,15 +98,6 @@
 }
 
 - (IBAction)jumpToBlog:(id)sender {
-/*
-    UIActionSheet* sheet = [[UIActionSheet alloc]initWithTitle:@"选择你想查看的页面"
-                                                      delegate:self
-                                             cancelButtonTitle:@"取消"
-                                        destructiveButtonTitle:nil
-                                             otherButtonTitles:@"第1页", @"第2页", @"第3页", @"第4页", nil];
-    sheet.cancelButtonIndex = sheet.numberOfButtons - 1;
-    [sheet showInView:[UIApplication sharedApplication].keyWindow];
-*/
 
     UIAlertController *sheet = [UIAlertController alertControllerWithTitle:@"选择你想查看的页面"
                                                                    message:nil
@@ -150,6 +141,7 @@
 - (void)catchHTMLBlogs:(int)pageIndex {
     NSString *blogIndex = [NSString stringWithFormat:blogUrlString, pageIndex];
     NSURL *blogURL = [NSURL URLWithString:blogIndex];
+
     NSURLRequest *request = [NSURLRequest requestWithURL:blogURL
                                              cachePolicy:NSURLRequestUseProtocolCachePolicy
                                          timeoutInterval:10.0f];
@@ -163,6 +155,15 @@
                                [self.tableView reloadData];
                                [self reloadView:connectionError];
                            }];
+
+/*
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:blogURL];
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request
+                                                                  delegate:self];
+    if (connection) {
+        self.htmlCache = [NSString new];
+    }
+*/
 }
 
 - (NSArray *)findedResults:(NSString *)html {
@@ -201,7 +202,8 @@
 }
 */
 
-#pragma marks
+#pragma marks - TableView代理方法
+
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section {
     return [self.catchedBlogs count];
@@ -252,13 +254,24 @@
                                   animated:YES];
 }
 /*
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (actionSheet.numberOfButtons - 1 == buttonIndex) {
-        return;
-    } else if ([self isConnectionAvailable]) {
-        [self showActivityIndicatorViewInNavigationItem];
-        [self catchHTMLBlogs:buttonIndex + 1];
-    }
+#pragma mark - NSURLConnection回调方法
+
+- (void)connection:(NSURLConnection *)connection
+    didReceiveData:(NSData *)data {
+    self.htmlCache = [[NSString alloc] initWithData:data
+                                           encoding:NSUTF8StringEncoding];
+    self.catchedBlogs = [self findedResults:self.htmlCache];
+    [self.tableView reloadData];
+}
+
+- (void)connection:(NSURLConnection *)connection
+  didFailWithError:(NSError *)error {
+    [self reloadView:error];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    [self.tableView reloadData];
 }
 */
+
 @end

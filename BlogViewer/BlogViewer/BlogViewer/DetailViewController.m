@@ -49,15 +49,7 @@
 - (void)handleLongTouch {
     NSLog(@"%@", _imgURL);
     if (_imgURL && _gesState == GESTURE_STATE_START) {
-/*
-        UIActionSheet* sheet = [[UIActionSheet alloc]initWithTitle:nil
-                                                          delegate:self
-                                                 cancelButtonTitle:@"取消"
-                                            destructiveButtonTitle:nil
-                                                 otherButtonTitles:@"保存到手机", nil];
-        sheet.cancelButtonIndex = sheet.numberOfButtons - 1;
-        [sheet showInView:[UIApplication sharedApplication].keyWindow];
-*/
+
         UIAlertController *sheet = [UIAlertController alertControllerWithTitle:@"保存到手机"
                                                                        message:nil
                                                                 preferredStyle:UIAlertControllerStyleActionSheet];
@@ -92,15 +84,7 @@
 }
 
 -(void)showAlert:(NSString *)msg {
-/*
-    NSLog(@"showAlert = %@", msg);
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                    message:msg
-                                                   delegate:self
-                                          cancelButtonTitle:@"确定"
-                                          otherButtonTitles: nil];
-    [alert show];
-*/
+
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示"
                                                                    message:msg
                                                             preferredStyle:UIAlertControllerStyleAlert];
@@ -183,30 +167,7 @@
     }
     return YES;
 }
-/*
-#pragma marks
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (actionSheet.numberOfButtons - 1 == buttonIndex) {
-        return;
-    }
-    NSString* title = [actionSheet buttonTitleAtIndex:buttonIndex];
-    if ([title isEqualToString:@"保存到手机"]) {
-        
-        if (_imgURL) {
-            NSLog(@"imgurl = %@", _imgURL);
-        }
-        NSString *urlToSave = [self.detailWebView stringByEvaluatingJavaScriptFromString:_imgURL];
-        NSLog(@"image url = %@", urlToSave);
-        
-        NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlToSave]];
-        UIImage* image = [UIImage imageWithData:data];
-        
-        //UIImageWriteToSavedPhotosAlbum(image, nil, nil,nil);
-        NSLog(@"UIImageWriteToSavedPhotosAlbum = %@", urlToSave);
-        UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
-    }
-}
-*/
+
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError*)error contextInfo:(void*)contextInfo
 {
     if (error){

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
+@interface ViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate, NSURLConnectionDataDelegate>
 
 @property (strong, nonatomic) NSString *urlString;
 
