@@ -28,6 +28,7 @@
 @property (strong, nonatomic) NSArray *memberIconFromPlist;
 - (IBAction)RefreshBlog:(id)sender;
 - (IBAction)jumpToBlog:(id)sender;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *BookMark;
 
 
 @end
@@ -133,7 +134,15 @@
     [sheet addAction:pageTwo];
     [sheet addAction:pageThree];
     [sheet addAction:cancelAction];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        sheet.modalPresentationStyle = UIModalPresentationPopover;
+        UIPopoverPresentationController *popPC = sheet.popoverPresentationController;
+        popPC.barButtonItem = self.BookMark;
+        popPC.permittedArrowDirections = UIPopoverArrowDirectionAny;
+    }
     [self presentViewController:sheet animated:YES completion:nil];
+    
+    
 
 }
 

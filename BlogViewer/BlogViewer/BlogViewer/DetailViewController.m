@@ -9,6 +9,7 @@
 #import "DetailViewController.h"
 
 @interface DetailViewController ()
+
 @property (weak, nonatomic) IBOutlet UIWebView *detailWebView;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *myActivityIndicatorView;
 - (IBAction)backToPage:(id)sender;
@@ -47,7 +48,7 @@
 
 
 - (void)handleLongTouch {
-    NSLog(@"%@", _imgURL);
+//    NSLog(@"%@", _imgURL);
     if (_imgURL && _gesState == GESTURE_STATE_START) {
 
         UIAlertController *sheet = [UIAlertController alertControllerWithTitle:@"保存到手机"
@@ -56,6 +57,7 @@
         UIAlertAction *defaultButton = [UIAlertAction actionWithTitle:@"确定"
                                                                 style:UIAlertActionStyleDefault
                                                               handler:^(UIAlertAction *action) {
+                                                                  [self.myActivityIndicatorView startAnimating];
                                                                   /*
                                                                   if (_imgURL) {
                                                                       NSLog(@"imgurl = %@", _imgURL);
@@ -76,14 +78,23 @@
                                                               }];
         UIAlertAction *cancelButton = [UIAlertAction actionWithTitle:@"取消"
                                                                style:UIAlertActionStyleCancel
-                                                             handler:nil];
+                                                             handler:^(UIAlertAction *action) {
+                                                                 [self.myActivityIndicatorView stopAnimating];
+                                                             }];
         [sheet addAction:defaultButton];
         [sheet addAction:cancelButton];
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            sheet.modalPresentationStyle = UIModalPresentationPopover;
+            UIPopoverPresentationController *popPC = sheet.popoverPresentationController;
+            popPC.sourceView = self.view;
+            popPC.sourceRect = CGRectMake((CGRectGetWidth(self.view.bounds)-2)*0.5f, (CGRectGetHeight(self.view.bounds)-2)*0.5f, 2, 2);
+            popPC.permittedArrowDirections = UIPopoverArrowDirectionAny;
+        }
         [self presentViewController:sheet animated:YES completion:nil];
     }
 }
 
--(void)showAlert:(NSString *)msg {
+- (void)showAlert:(NSString *)msg {
 
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示"
                                                                    message:msg
@@ -170,6 +181,7 @@
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError*)error contextInfo:(void*)contextInfo
 {
+    [self.myActivityIndicatorView stopAnimating];
     if (error){
         NSLog(@"Error");
         [self showAlert:@"保存失败..."];
@@ -178,6 +190,15 @@
         [self showAlert:@"保存成功！"];
     }
 }
+
+#pragma mark--UIPresentationController
+
+- (void)popoverPresentationController:(UIPopoverPresentationController *)popoverPresentationController
+          willRepositionPopoverToRect:(inout CGRect *)rect
+                               inView:(inout UIView *__autoreleasing  _Nonnull *)view {
+    *rect = CGRectMake((CGRectGetWidth((*view).bounds)-2)*0.5f, (CGRectGetHeight((*view).bounds)-2)*0.5f, 2, 2);// 显示在中心位置
+}
+
 
 - (IBAction)backToPage:(id)sender {
     if ([self.detailWebView canGoBack]) {

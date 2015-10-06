@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Reachability.h"
 
-@interface DetailViewController : UIViewController<UIWebViewDelegate>{
+@interface DetailViewController : UIViewController<UIWebViewDelegate, UIPopoverPresentationControllerDelegate>{
     NSTimer *_timer;    // 用于UIWebView保存图片
     int _gesState;      // 用于UIWebView保存图片
     NSString *_imgURL;  // 用于UIWebView保存图片
