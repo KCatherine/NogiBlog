@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Reachability.h"
+#import "MBProgressHUD.h"
 
 @interface DetailViewController : UIViewController<UIWebViewDelegate, UIPopoverPresentationControllerDelegate>{
     NSTimer *_timer;    // 用于UIWebView保存图片

@@ -11,13 +11,15 @@
 #import "BlogTitleTableViewCell.h"
 #import "Reachability.h"
 #import "BlogXMLParser.h"
+#import "MBProgressHUD.h"
 
 #define blogXMLString @"http://blog.nogizaka46.com/atom.xml"
 #define blogUrlString @"http://blog.nogizaka46.com/smph/?p=%d"
 #define blogCatchPattern @"<td class=\"heading\"><span class=\"author\">(.*?)</span> <span class=\"entrytitle\"><a href=\"(.*?)\" rel=\"bookmark\">(.*?)</a></span></td>.*?<div class=\"kijifoot\">(.*?)｜.*?</div>"
 
-@interface ViewController ()
-
+@interface ViewController () <MBProgressHUDDelegate> {
+    MBProgressHUD *HUD;
+}
 @property (strong, nonatomic) NSString *htmlCache;
 @property (strong, nonatomic) NSArray *catchedBlogs;
 /*
@@ -26,6 +28,7 @@
 @property (strong, nonatomic) NSDictionary *nameWithIcon;
 @property (strong, nonatomic) NSArray *memberNameFromPlist;
 @property (strong, nonatomic) NSArray *memberIconFromPlist;
+
 - (IBAction)RefreshBlog:(id)sender;
 - (IBAction)jumpToBlog:(id)sender;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *BookMark;
@@ -46,10 +49,11 @@
     self.memberNameFromPlist = [self.nameWithIcon objectForKey:@"name"];
     self.memberIconFromPlist = [self.nameWithIcon objectForKey:@"icon"];
 
-    if ([self isConnectionAvailable]) {
-        [self showActivityIndicatorViewInNavigationItem];
-        [self catchHTMLBlogs:1];
-    }
+    // The hud will dispable all input on the view (use the higest view possible in the view hierarchy)
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    
+    [self goToPage:1];
 
 /*
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -59,6 +63,19 @@
     BlogXMLParser *parser = [BlogXMLParser new];
     [parser start];
 */
+}
+
+- (void)goToPage:(int)Index {
+    if ([self isConnectionAvailable]) {
+//        self.navigationItem.prompt = @"数据加载中...";
+
+        // Regiser for HUD callbacks so we can remove it from the window at the right time
+        HUD.delegate = self;
+        
+        // Show the HUD while the provided method executes in a new thread
+        [HUD show:YES];
+        [self catchHTMLBlogs:Index];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,7 +100,14 @@
     }
     
     if (!isExistenceNetwork) {
-        self.navigationItem.prompt = @"无法连接到服务器";
+        
+        HUD.mode = MBProgressHUDModeText;
+        HUD.labelText = @"无法连接到服务器";
+        HUD.margin = 10.f;
+        HUD.removeFromSuperViewOnHide = YES;
+        [HUD hide:YES afterDelay:5];
+        
+//        self.navigationItem.prompt = @"无法连接到服务器";
         return NO;
     }
     
@@ -91,11 +115,7 @@
 }
 
 - (IBAction)RefreshBlog:(id)sender {
-    
-    if ([self isConnectionAvailable]) {
-        [self showActivityIndicatorViewInNavigationItem];
-        [self catchHTMLBlogs:1];
-    }
+    [self goToPage:1];
 }
 
 - (IBAction)jumpToBlog:(id)sender {
@@ -106,26 +126,17 @@
     UIAlertAction *pageOne = [UIAlertAction actionWithTitle:@"第一页"
                                                       style:UIAlertActionStyleDefault
                                                     handler:^(UIAlertAction *action) {
-                                                        if ([self isConnectionAvailable]) {
-                                                            [self showActivityIndicatorViewInNavigationItem];
-                                                            [self catchHTMLBlogs:1];
-                                                        }
+                                                        [self goToPage:1];
                                                     }];
     UIAlertAction *pageTwo = [UIAlertAction actionWithTitle:@"第二页"
                                                       style:UIAlertActionStyleDefault
                                                     handler:^(UIAlertAction *action) {
-                                                        if ([self isConnectionAvailable]) {
-                                                            [self showActivityIndicatorViewInNavigationItem];
-                                                            [self catchHTMLBlogs:2];
-                                                        }
+                                                        [self goToPage:2];
                                                     }];
     UIAlertAction *pageThree = [UIAlertAction actionWithTitle:@"第三页"
                                                         style:UIAlertActionStyleDefault
                                                       handler:^(UIAlertAction *action) {
-                                                          if ([self isConnectionAvailable]) {
-                                                              [self showActivityIndicatorViewInNavigationItem];
-                                                              [self catchHTMLBlogs:3];
-                                                          }
+                                                        [self goToPage:3];
                                                       }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
                                                            style:UIAlertActionStyleCancel
@@ -141,8 +152,6 @@
         popPC.permittedArrowDirections = UIPopoverArrowDirectionAny;
     }
     [self presentViewController:sheet animated:YES completion:nil];
-    
-    
 
 }
 
@@ -188,20 +197,23 @@
     return detailsOfBlog;
 }
 
-
-- (void)showActivityIndicatorViewInNavigationItem {
-    self.navigationItem.prompt = @"数据加载中...";
-}
-
-
 - (void)reloadView:(NSError *)connectionError {
     if (!connectionError) {
         self.navigationItem.prompt = nil;
+        [HUD hide:YES];
     } else {
-        self.navigationItem.prompt = @"请求超时";
+        
+        HUD.mode = MBProgressHUDModeText;
+        HUD.labelText = @"请求超时";
+        HUD.margin = 10.f;
+        HUD.removeFromSuperViewOnHide = YES;
+        [HUD hide:YES afterDelay:2];
+        
+//        self.navigationItem.prompt = @"请求超时";
     }
     
 }
+
 
 /*
 - (void)reloadView:(NSNotification *)notification {
@@ -210,6 +222,14 @@
     [self.tableView reloadData];
 }
 */
+
+#pragma mark - MBProgressHUDDelegate
+
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+    // Remove HUD from screen when the HUD was hidded
+    [HUD removeFromSuperview];
+    HUD = nil;
+}
 
 #pragma marks - TableView代理方法
 

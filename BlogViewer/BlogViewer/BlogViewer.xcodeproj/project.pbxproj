@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		390295D81BCF2E5F00BFB984 /* arrow_back_32px_1181650_easyicon.net.png in Resources */ = {isa = PBXBuildFile; fileRef = 390295D71BCF2E5F00BFB984 /* arrow_back_32px_1181650_easyicon.net.png */; settings = {ASSET_TAGS = (); }; };
+		390295DE1BCF2F9800BFB984 /* Menu_24.226579520697px_1183427_easyicon.net.png in Resources */ = {isa = PBXBuildFile; fileRef = 390295DD1BCF2F9800BFB984 /* Menu_24.226579520697px_1183427_easyicon.net.png */; settings = {ASSET_TAGS = (); }; };
 		3922DAC41B6F06B400926C01 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3922DAC31B6F06B400926C01 /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		3922DAC71B6F0A0E00926C01 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3922DAC61B6F0A0E00926C01 /* Reachability.m */; };
 		3922DACB1B6F2C7700926C01 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3922DACA1B6F2C7700926C01 /* Images.xcassets */; };
 		397AF2911BA25CC500C93CEE /* BlogXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 397AF2901BA25CC500C93CEE /* BlogXMLParser.m */; };
+		3994CC9F1BD0EA1300074D43 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3994CC9E1BD0EA1300074D43 /* MBProgressHUD.m */; settings = {ASSET_TAGS = (); }; };
 		39C727801BB42F3600DF7473 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39C7277F1BB42F3600DF7473 /* Launch Screen.storyboard */; settings = {ASSET_TAGS = (); }; };
 		39C727871BB4F77F00DF7473 /* Nogizaka46.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 39C727861BB4F77F00DF7473 /* Nogizaka46.PNG */; settings = {ASSET_TAGS = (); }; };
 		39D553B81B70F3FC00C0E061 /* IMG_Staff.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 39D553B71B70F3FC00C0E061 /* IMG_Staff.JPG */; };
@@ -72,12 +75,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		390295D71BCF2E5F00BFB984 /* arrow_back_32px_1181650_easyicon.net.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_back_32px_1181650_easyicon.net.png; sourceTree = "<group>"; };
+		390295DD1BCF2F9800BFB984 /* Menu_24.226579520697px_1183427_easyicon.net.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Menu_24.226579520697px_1183427_easyicon.net.png; sourceTree = "<group>"; };
 		3922DAC31B6F06B400926C01 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3922DAC51B6F0A0E00926C01 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		3922DAC61B6F0A0E00926C01 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		3922DACA1B6F2C7700926C01 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		397AF28F1BA25CC500C93CEE /* BlogXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlogXMLParser.h; sourceTree = "<group>"; };
 		397AF2901BA25CC500C93CEE /* BlogXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlogXMLParser.m; sourceTree = "<group>"; };
+		3994CC9D1BD0EA1300074D43 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		3994CC9E1BD0EA1300074D43 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		39C7277F1BB42F3600DF7473 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		39C727861BB4F77F00DF7473 /* Nogizaka46.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Nogizaka46.PNG; sourceTree = "<group>"; };
 		39D553B71B70F3FC00C0E061 /* IMG_Staff.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_Staff.JPG; sourceTree = "<group>"; };
@@ -155,6 +162,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3994CC9C1BD0E9F400074D43 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				3994CC9D1BD0EA1300074D43 /* MBProgressHUD.h */,
+				3994CC9E1BD0EA1300074D43 /* MBProgressHUD.m */,
+				3922DAC51B6F0A0E00926C01 /* Reachability.h */,
+				3922DAC61B6F0A0E00926C01 /* Reachability.m */,
+			);
+			name = ThirdParty;
+			sourceTree = "<group>";
+		};
 		39C727831BB43E8100DF7473 /* XMLParser */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,8 +204,6 @@
 		8EEBD3C41B6C670F005F5350 /* BlogViewer */ = {
 			isa = PBXGroup;
 			children = (
-				3922DAC51B6F0A0E00926C01 /* Reachability.h */,
-				3922DAC61B6F0A0E00926C01 /* Reachability.m */,
 				8EEBD3C91B6C670F005F5350 /* AppDelegate.h */,
 				8EEBD3CA1B6C670F005F5350 /* AppDelegate.m */,
 				8EEBD3CC1B6C670F005F5350 /* ViewController.h */,
@@ -199,6 +215,7 @@
 				8EEBD3EB1B6C79CD005F5350 /* BlogTitleTableViewCell.h */,
 				8EEBD3EC1B6C79CD005F5350 /* BlogTitleTableViewCell.m */,
 				3922DACA1B6F2C7700926C01 /* Images.xcassets */,
+				3994CC9C1BD0E9F400074D43 /* ThirdParty */,
 				39C727831BB43E8100DF7473 /* XMLParser */,
 				8EEBD3C51B6C670F005F5350 /* Supporting Files */,
 			);
@@ -236,6 +253,8 @@
 		8EEBD3F61B6DA9F1005F5350 /* 2015_08 */ = {
 			isa = PBXGroup;
 			children = (
+				390295DD1BCF2F9800BFB984 /* Menu_24.226579520697px_1183427_easyicon.net.png */,
+				390295D71BCF2E5F00BFB984 /* arrow_back_32px_1181650_easyicon.net.png */,
 				39C727861BB4F77F00DF7473 /* Nogizaka46.PNG */,
 				39D553B71B70F3FC00C0E061 /* IMG_Staff.JPG */,
 				8EEBD3F71B6DA9F1005F5350 /* IMG_0231.JPG */,
@@ -392,9 +411,11 @@
 				8EEBD41D1B6DA9F1005F5350 /* IMG_0232.JPG in Resources */,
 				8EEBD42F1B6DA9F1005F5350 /* IMG_0250.JPG in Resources */,
 				8EEBD43E1B6DA9F1005F5350 /* IMG_0265.JPG in Resources */,
+				390295D81BCF2E5F00BFB984 /* arrow_back_32px_1181650_easyicon.net.png in Resources */,
 				8EEBD43A1B6DA9F1005F5350 /* IMG_0261.JPG in Resources */,
 				8EEBD42E1B6DA9F1005F5350 /* IMG_0249.JPG in Resources */,
 				8EEBD4351B6DA9F1005F5350 /* IMG_0256.JPG in Resources */,
+				390295DE1BCF2F9800BFB984 /* Menu_24.226579520697px_1183427_easyicon.net.png in Resources */,
 				39D553B81B70F3FC00C0E061 /* IMG_Staff.JPG in Resources */,
 				8EEBD4241B6DA9F1005F5350 /* IMG_0239.JPG in Resources */,
 				8EEBD4311B6DA9F1005F5350 /* IMG_0252.JPG in Resources */,
@@ -427,6 +448,7 @@
 				8EEBD3C81B6C670F005F5350 /* main.m in Sources */,
 				3922DAC71B6F0A0E00926C01 /* Reachability.m in Sources */,
 				8EEBD3F31B6C92DE005F5350 /* DetailViewController.m in Sources */,
+				3994CC9F1BD0EA1300074D43 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,8 +570,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BlogViewer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "per.yj.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = per.yj.BlogViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -563,8 +586,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BlogViewer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "per.yj.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = per.yj.BlogViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

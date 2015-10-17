@@ -8,12 +8,12 @@
 
 #import "DetailViewController.h"
 
-@interface DetailViewController ()
+@interface DetailViewController () <MBProgressHUDDelegate> {
+    MBProgressHUD *HUD;
+}
 
 @property (weak, nonatomic) IBOutlet UIWebView *detailWebView;
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *myActivityIndicatorView;
 - (IBAction)backToPage:(id)sender;
-- (IBAction)stopLoading:(id)sender;
 - (IBAction)refreshPage:(id)sender;
 
 @end
@@ -37,13 +37,20 @@
 }
 
 - (void)showActivityIndicatorViewInNavigationItem {
-    self.navigationItem.prompt = @"网页加载中...";
-    [self.myActivityIndicatorView startAnimating];
+    
+    // The hud will dispable all input on the view (use the higest view possible in the view hierarchy)
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    
+    // Regiser for HUD callbacks so we can remove it from the window at the right time
+    HUD.delegate = self;
+    
+    // Show the HUD while the provided method executes in a new thread
+    [HUD show:YES];
 }
 
 - (void)reloadView {
-    self.navigationItem.prompt = nil;
-    [self.myActivityIndicatorView stopAnimating];
+    [HUD hide:YES];
 }
 
 
@@ -57,7 +64,6 @@
         UIAlertAction *defaultButton = [UIAlertAction actionWithTitle:@"确定"
                                                                 style:UIAlertActionStyleDefault
                                                               handler:^(UIAlertAction *action) {
-                                                                  [self.myActivityIndicatorView startAnimating];
                                                                   /*
                                                                   if (_imgURL) {
                                                                       NSLog(@"imgurl = %@", _imgURL);
@@ -74,12 +80,13 @@
                                                                   /*
                                                                   NSLog(@"UIImageWriteToSavedPhotosAlbum = %@", urlToSave);
                                                                   */
+                                                                  
                                                                   UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
                                                               }];
         UIAlertAction *cancelButton = [UIAlertAction actionWithTitle:@"取消"
                                                                style:UIAlertActionStyleCancel
                                                              handler:^(UIAlertAction *action) {
-                                                                 [self.myActivityIndicatorView stopAnimating];
+                                                                 
                                                              }];
         [sheet addAction:defaultButton];
         [sheet addAction:cancelButton];
@@ -158,7 +165,7 @@
                     _imgURL = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).src", ptX, ptY];
                 }
                 if (_imgURL) {
-                    _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(handleLongTouch) userInfo:nil repeats:NO];
+                    _timer = [NSTimer scheduledTimerWithTimeInterval:1.25 target:self selector:@selector(handleLongTouch) userInfo:nil repeats:NO];
                 }
             }
             else if ([(NSString *)[components objectAtIndex:2] isEqualToString:@"move"])
@@ -181,7 +188,6 @@
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError*)error contextInfo:(void*)contextInfo
 {
-    [self.myActivityIndicatorView stopAnimating];
     if (error){
         NSLog(@"Error");
         [self showAlert:@"保存失败..."];
@@ -199,23 +205,28 @@
     *rect = CGRectMake((CGRectGetWidth((*view).bounds)-2)*0.5f, (CGRectGetHeight((*view).bounds)-2)*0.5f, 2, 2);// 显示在中心位置
 }
 
+#pragma mark - MBProgressHUDDelegate
+
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+    // Remove HUD from screen when the HUD was hidded
+    [HUD removeFromSuperview];
+    HUD = nil;
+}
+
 
 - (IBAction)backToPage:(id)sender {
     if ([self.detailWebView canGoBack]) {
+        [self showActivityIndicatorViewInNavigationItem];
         [self.detailWebView goBack];
-    }
-}
-
-- (IBAction)stopLoading:(id)sender {
-    if (self.detailWebView.loading) {
-        [self.detailWebView stopLoading];
         [self reloadView];
     }
 }
 
 - (IBAction)refreshPage:(id)sender {
+    
     [self showActivityIndicatorViewInNavigationItem];
     [self.detailWebView reload];
     [self reloadView];
+
 }
 @end

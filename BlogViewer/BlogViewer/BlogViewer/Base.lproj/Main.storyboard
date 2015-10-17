@@ -7,7 +7,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--NogiBlog-->
+        <!--Top 5-->
         <scene sceneID="ANS-3H-04f">
             <objects>
                 <tableViewController id="war-Rj-rJt" customClass="ViewController" sceneMemberID="viewController">
@@ -187,8 +187,8 @@
                             <outlet property="delegate" destination="war-Rj-rJt" id="fys-mc-KFG"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="NogiBlog" id="wCL-o0-bjA">
-                        <barButtonItem key="leftBarButtonItem" systemItem="bookmarks" id="CYG-Li-f5y">
+                    <navigationItem key="navigationItem" title="Top 5" id="wCL-o0-bjA">
+                        <barButtonItem key="leftBarButtonItem" image="Menu_24.226579520697px_1183427_easyicon.net.png" id="CYG-Li-f5y">
                             <connections>
                                 <action selector="jumpToBlog:" destination="war-Rj-rJt" id="4lI-Me-7EN"/>
                             </connections>
@@ -224,21 +224,9 @@
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <animations/>
                                 <items>
-                                    <barButtonItem systemItem="reply" id="IeB-T0-R6k">
+                                    <barButtonItem title="后退" id="IeB-T0-R6k">
                                         <connections>
                                             <action selector="backToPage:" destination="pff-ro-jbQ" id="yEf-fI-TJ9"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ef7-HL-fvJ"/>
-                                    <barButtonItem systemItem="stop" id="ws8-eh-RO5">
-                                        <connections>
-                                            <action selector="stopLoading:" destination="pff-ro-jbQ" id="MnH-Zv-zVW"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="dLW-jW-Zw7"/>
-                                    <barButtonItem systemItem="refresh" id="u5j-gI-sxa">
-                                        <connections>
-                                            <action selector="refreshPage:" destination="pff-ro-jbQ" id="ezX-r0-rHE"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -259,48 +247,43 @@
                                     </mask>
                                 </variation>
                             </webView>
-                            <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="wVv-bO-WKu">
-                                <rect key="frame" x="290" y="290" width="20" height="20"/>
-                                <animations/>
-                            </activityIndicatorView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="rdV-XD-l1M" firstAttribute="leading" secondItem="IyF-ON-HP9" secondAttribute="leading" id="4iu-N0-8iy"/>
-                            <constraint firstItem="wVv-bO-WKu" firstAttribute="top" secondItem="OS6-1a-Dri" secondAttribute="bottom" constant="236" id="8Dn-W5-B3A"/>
                             <constraint firstItem="gHr-lm-sD5" firstAttribute="top" secondItem="OS6-1a-Dri" secondAttribute="bottom" id="BfC-R4-qhb"/>
                             <constraint firstItem="rdV-XD-l1M" firstAttribute="top" secondItem="gHr-lm-sD5" secondAttribute="bottom" id="EOd-Yl-VLi"/>
                             <constraint firstItem="gHr-lm-sD5" firstAttribute="top" secondItem="OS6-1a-Dri" secondAttribute="bottom" constant="1" id="L29-j2-3dM"/>
-                            <constraint firstItem="wVv-bO-WKu" firstAttribute="centerY" secondItem="IyF-ON-HP9" secondAttribute="centerY" id="OnR-Gn-fjV"/>
-                            <constraint firstItem="rdV-XD-l1M" firstAttribute="centerX" secondItem="wVv-bO-WKu" secondAttribute="centerX" id="RNd-v4-bln"/>
                             <constraint firstItem="rdV-XD-l1M" firstAttribute="bottom" secondItem="Kef-Pe-ZdP" secondAttribute="top" id="f9v-6i-qx4"/>
                             <constraint firstItem="gHr-lm-sD5" firstAttribute="leading" secondItem="rdV-XD-l1M" secondAttribute="leading" id="gzI-pu-Cyi"/>
                             <constraint firstItem="rdV-XD-l1M" firstAttribute="trailing" secondItem="gHr-lm-sD5" secondAttribute="trailing" id="i5y-Tj-TEh"/>
                             <constraint firstAttribute="trailing" secondItem="gHr-lm-sD5" secondAttribute="trailing" id="nXO-nO-Dgr"/>
-                            <constraint firstItem="wVv-bO-WKu" firstAttribute="centerY" secondItem="IyF-ON-HP9" secondAttribute="centerY" id="xrE-D7-Ikc"/>
                             <constraint firstItem="gHr-lm-sD5" firstAttribute="top" secondItem="OS6-1a-Dri" secondAttribute="bottom" id="yxW-Co-9co"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="BfC-R4-qhb"/>
                                 <exclude reference="L29-j2-3dM"/>
-                                <exclude reference="8Dn-W5-B3A"/>
-                                <exclude reference="xrE-D7-Ikc"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="constraints">
                                 <include reference="BfC-R4-qhb"/>
                                 <exclude reference="L29-j2-3dM"/>
-                                <include reference="xrE-D7-Ikc"/>
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="p8q-Ed-ZbJ"/>
+                    <navigationItem key="navigationItem" id="p8q-Ed-ZbJ">
+                        <barButtonItem key="backBarButtonItem" title="首页" id="XXT-ve-yIo"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="akJ-Gj-Hp9">
+                            <connections>
+                                <action selector="refreshPage:" destination="pff-ro-jbQ" id="MI2-8e-VFm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="detailWebView" destination="gHr-lm-sD5" id="cMM-8x-VbJ"/>
-                        <outlet property="myActivityIndicatorView" destination="wVv-bO-WKu" id="tUd-Qu-s8K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ViB-qg-ydH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -327,5 +310,6 @@
     </scenes>
     <resources>
         <image name="IMG_0266.JPG" width="220" height="265"/>
+        <image name="Menu_24.226579520697px_1183427_easyicon.net.png" width="24" height="15"/>
     </resources>
 </document>

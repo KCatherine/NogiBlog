@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -20,34 +19,19 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Nogizaka46.PNG" translatesAutoresizingMaskIntoConstraints="NO" id="fvh-i0-Tjx">
                                 <rect key="frame" x="160" y="120" width="281" height="360"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="360" id="ByF-Ly-Rr7"/>
                                     <constraint firstAttribute="width" constant="281" id="rOC-ko-nUO"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright © 2015年 YangJing. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="obG-Y5-kRd">
-                                <rect key="frame" x="20" y="559" width="560" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="obG-Y5-kRd" secondAttribute="bottom" constant="20" symbolic="YES" id="L8y-OK-zig"/>
-                            <constraint firstItem="obG-Y5-kRd" firstAttribute="top" secondItem="fvh-i0-Tjx" secondAttribute="bottom" constant="79" id="RlZ-sY-44x"/>
                             <constraint firstItem="fvh-i0-Tjx" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Wtb-VA-YeY"/>
-                            <constraint firstItem="obG-Y5-kRd" firstAttribute="centerX" secondItem="fvh-i0-Tjx" secondAttribute="centerX" id="hfp-ys-ds7"/>
-                            <constraint firstItem="obG-Y5-kRd" firstAttribute="top" secondItem="fvh-i0-Tjx" secondAttribute="bottom" constant="91" id="hgp-g6-fXR"/>
-                            <constraint firstItem="obG-Y5-kRd" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="izP-mP-MF3"/>
-                            <constraint firstItem="obG-Y5-kRd" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailingMargin" id="tQu-sg-JG8"/>
+                            <constraint firstItem="fvh-i0-Tjx" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="sBU-ya-jdS"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="RlZ-sY-44x"/>
-                                <exclude reference="hgp-g6-fXR"/>
-                            </mask>
-                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
