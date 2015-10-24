@@ -48,10 +48,6 @@
     self.nameWithIcon = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
     self.memberNameFromPlist = [self.nameWithIcon objectForKey:@"name"];
     self.memberIconFromPlist = [self.nameWithIcon objectForKey:@"icon"];
-
-    // The hud will dispable all input on the view (use the higest view possible in the view hierarchy)
-    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-    [self.navigationController.view addSubview:HUD];
     
     [self goToPage:1];
 
@@ -66,14 +62,18 @@
 }
 
 - (void)goToPage:(int)Index {
+    // The hud will dispable all input on the view (use the higest view possible in the view hierarchy)
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    
+    // Regiser for HUD callbacks so we can remove it from the window at the right time
+    HUD.delegate = self;
+    
+    [HUD show:YES];
     if ([self isConnectionAvailable]) {
 //        self.navigationItem.prompt = @"数据加载中...";
 
-        // Regiser for HUD callbacks so we can remove it from the window at the right time
-        HUD.delegate = self;
-        
         // Show the HUD while the provided method executes in a new thread
-        [HUD show:YES];
         [self catchHTMLBlogs:Index];
     }
 }
@@ -127,6 +127,7 @@
                                                       style:UIAlertActionStyleDefault
                                                     handler:^(UIAlertAction *action) {
                                                         [self goToPage:1];
+                                                        self.navigationItem.title = @"最新动态";
                                                     }];
     UIAlertAction *pageTwo = [UIAlertAction actionWithTitle:@"第二页"
                                                       style:UIAlertActionStyleDefault

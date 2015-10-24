@@ -28,7 +28,7 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self showActivityIndicatorViewInNavigationItem];
     [self.detailWebView loadRequest:request];
-    
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,7 +37,7 @@
 }
 
 - (void)showActivityIndicatorViewInNavigationItem {
-    
+
     // The hud will dispable all input on the view (use the higest view possible in the view hierarchy)
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];
@@ -46,7 +46,9 @@
     HUD.delegate = self;
     
     // Show the HUD while the provided method executes in a new thread
+
     [HUD show:YES];
+ 
 }
 
 - (void)reloadView {
@@ -133,7 +135,11 @@
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    if([error code] == NSURLErrorCancelled)
+        return; // Ignore this error
+    
     NSLog(@"%@", [error description]);
+    
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -218,7 +224,6 @@
     if ([self.detailWebView canGoBack]) {
         [self showActivityIndicatorViewInNavigationItem];
         [self.detailWebView goBack];
-        [self reloadView];
     }
 }
 
@@ -226,7 +231,6 @@
     
     [self showActivityIndicatorViewInNavigationItem];
     [self.detailWebView reload];
-    [self reloadView];
 
 }
 @end
