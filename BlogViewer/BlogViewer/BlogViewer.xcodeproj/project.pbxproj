@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		390295D81BCF2E5F00BFB984 /* arrow_back_32px_1181650_easyicon.net.png in Resources */ = {isa = PBXBuildFile; fileRef = 390295D71BCF2E5F00BFB984 /* arrow_back_32px_1181650_easyicon.net.png */; };
 		390295DE1BCF2F9800BFB984 /* Menu_24.226579520697px_1183427_easyicon.net.png in Resources */ = {isa = PBXBuildFile; fileRef = 390295DD1BCF2F9800BFB984 /* Menu_24.226579520697px_1183427_easyicon.net.png */; };
-		3915F4C31BDA064D006EEB2D /* Nogizaka46.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 3915F4C21BDA064D006EEB2D /* Nogizaka46.JPG */; };
+		3915F4C51BDBCDAD006EEB2D /* BlogViewer-Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3915F4C41BDBCDAD006EEB2D /* BlogViewer-Logo.png */; };
 		3922DAC41B6F06B400926C01 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3922DAC31B6F06B400926C01 /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		3922DAC71B6F0A0E00926C01 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3922DAC61B6F0A0E00926C01 /* Reachability.m */; };
 		3922DACB1B6F2C7700926C01 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3922DACA1B6F2C7700926C01 /* Images.xcassets */; };
@@ -78,7 +78,7 @@
 /* Begin PBXFileReference section */
 		390295D71BCF2E5F00BFB984 /* arrow_back_32px_1181650_easyicon.net.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_back_32px_1181650_easyicon.net.png; sourceTree = "<group>"; };
 		390295DD1BCF2F9800BFB984 /* Menu_24.226579520697px_1183427_easyicon.net.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Menu_24.226579520697px_1183427_easyicon.net.png; sourceTree = "<group>"; };
-		3915F4C21BDA064D006EEB2D /* Nogizaka46.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Nogizaka46.JPG; sourceTree = "<group>"; };
+		3915F4C41BDBCDAD006EEB2D /* BlogViewer-Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BlogViewer-Logo.png"; sourceTree = "<group>"; };
 		3922DAC31B6F06B400926C01 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3922DAC51B6F0A0E00926C01 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		3922DAC61B6F0A0E00926C01 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -255,7 +255,7 @@
 		8EEBD3F61B6DA9F1005F5350 /* 2015_08 */ = {
 			isa = PBXGroup;
 			children = (
-				3915F4C21BDA064D006EEB2D /* Nogizaka46.JPG */,
+				3915F4C41BDBCDAD006EEB2D /* BlogViewer-Logo.png */,
 				390295DD1BCF2F9800BFB984 /* Menu_24.226579520697px_1183427_easyicon.net.png */,
 				390295D71BCF2E5F00BFB984 /* arrow_back_32px_1181650_easyicon.net.png */,
 				39C727861BB4F77F00DF7473 /* Nogizaka46.PNG */,
@@ -391,7 +391,6 @@
 				39C727801BB42F3600DF7473 /* Launch Screen.storyboard in Resources */,
 				8EEBD4281B6DA9F1005F5350 /* IMG_0243.JPG in Resources */,
 				8EEBD4261B6DA9F1005F5350 /* IMG_0241.JPG in Resources */,
-				3915F4C31BDA064D006EEB2D /* Nogizaka46.JPG in Resources */,
 				8EEBD4251B6DA9F1005F5350 /* IMG_0240.JPG in Resources */,
 				3922DACB1B6F2C7700926C01 /* Images.xcassets in Resources */,
 				8EEBD4381B6DA9F1005F5350 /* IMG_0259.JPG in Resources */,
@@ -417,6 +416,7 @@
 				8EEBD43E1B6DA9F1005F5350 /* IMG_0265.JPG in Resources */,
 				390295D81BCF2E5F00BFB984 /* arrow_back_32px_1181650_easyicon.net.png in Resources */,
 				8EEBD43A1B6DA9F1005F5350 /* IMG_0261.JPG in Resources */,
+				3915F4C51BDBCDAD006EEB2D /* BlogViewer-Logo.png in Resources */,
 				8EEBD42E1B6DA9F1005F5350 /* IMG_0249.JPG in Resources */,
 				8EEBD4351B6DA9F1005F5350 /* IMG_0256.JPG in Resources */,
 				390295DE1BCF2F9800BFB984 /* Menu_24.226579520697px_1183427_easyicon.net.png in Resources */,

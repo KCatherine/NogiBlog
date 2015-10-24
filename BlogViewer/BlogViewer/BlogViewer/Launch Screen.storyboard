@@ -17,21 +17,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Nogizaka46.PNG" translatesAutoresizingMaskIntoConstraints="NO" id="Spd-cq-gxJ">
-                                <rect key="frame" x="160" y="120" width="281" height="360"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlogViewer-Logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Spd-cq-gxJ">
+                                <rect key="frame" x="160" y="160" width="280" height="280"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="360" id="DYL-nH-Jgn"/>
                                     <constraint firstAttribute="width" constant="281" id="Y9l-yg-Xnb"/>
+                                    <constraint firstAttribute="height" constant="280" id="i42-jJ-51d"/>
+                                    <constraint firstAttribute="width" constant="280" id="o0G-OT-NuF"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="DYL-nH-Jgn"/>
+                                        <exclude reference="Y9l-yg-Xnb"/>
+                                    </mask>
+                                </variation>
                             </imageView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Spd-cq-gxJ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="1CO-oK-70J"/>
-                            <constraint firstItem="Spd-cq-gxJ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="eRs-dU-yNz"/>
+                            <constraint firstItem="Spd-cq-gxJ" firstAttribute="bottom" secondItem="xb3-aO-Qok" secondAttribute="top" id="Jdp-cg-50w"/>
+                            <constraint firstItem="Spd-cq-gxJ" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="O2j-UY-kf4"/>
+                            <constraint firstItem="Spd-cq-gxJ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="kUB-yp-PaY"/>
+                            <constraint firstItem="Spd-cq-gxJ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="xbu-dG-Xhw"/>
+                            <constraint firstItem="Spd-cq-gxJ" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="140" id="y7I-Ls-CVp"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Jdp-cg-50w"/>
+                                <exclude reference="O2j-UY-kf4"/>
+                                <exclude reference="y7I-Ls-CVp"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -40,6 +58,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Nogizaka46.PNG" width="562" height="720"/>
+        <image name="BlogViewer-Logo.png" width="1024" height="1024"/>
     </resources>
 </document>
