@@ -25,9 +25,12 @@
 /*
 @property (strong, nonatomic) NSMutableArray *blogs;
 */
+
+/*图片与名称对应代码
 @property (strong, nonatomic) NSDictionary *nameWithIcon;
 @property (strong, nonatomic) NSArray *memberNameFromPlist;
 @property (strong, nonatomic) NSArray *memberIconFromPlist;
+*/
 
 - (IBAction)RefreshBlog:(id)sender;
 - (IBAction)jumpToBlog:(id)sender;
@@ -43,12 +46,14 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    
+/*设置图片与名称对称的代码
     NSBundle *bundle = [NSBundle mainBundle];
     NSString *plistPath = [bundle pathForResource:@"nameWithIcon" ofType:@"plist"];
     self.nameWithIcon = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
     self.memberNameFromPlist = [self.nameWithIcon objectForKey:@"name"];
     self.memberIconFromPlist = [self.nameWithIcon objectForKey:@"icon"];
-    
+*/
     [self goToPage:1];
 
 /*
@@ -127,7 +132,6 @@
                                                       style:UIAlertActionStyleDefault
                                                     handler:^(UIAlertAction *action) {
                                                         [self goToPage:1];
-                                                        self.navigationItem.title = @"最新动态";
                                                     }];
     UIAlertAction *pageTwo = [UIAlertAction actionWithTitle:@"第二页"
                                                       style:UIAlertActionStyleDefault
@@ -256,10 +260,13 @@
     cell.blogTitle.text = [detailOfBlog objectForKey:@"blogTitle"];
     cell.releaseTime.text = [detailOfBlog objectForKey:@"blogTime"];
 */
+    
+/*设置表格中成员图片代码
     NSUInteger nameAtRow = [self.memberNameFromPlist indexOfObject:cell.memberName.text];
     NSString *imagePath = [self.memberIconFromPlist objectAtIndex:nameAtRow];
     imagePath = [imagePath stringByAppendingString:@".JPG"];
     cell.memberIcon.image = [UIImage imageNamed:imagePath];
+*/
     return cell;
 }
 

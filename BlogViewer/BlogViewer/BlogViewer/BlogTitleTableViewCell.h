@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface BlogTitleTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *memberIcon;
+
 @property (weak, nonatomic) IBOutlet UILabel *memberName;
 @property (weak, nonatomic) IBOutlet UILabel *releaseTime;
 @property (weak, nonatomic) IBOutlet UILabel *blogTitle;

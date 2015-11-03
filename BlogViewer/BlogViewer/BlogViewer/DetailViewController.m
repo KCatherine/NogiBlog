@@ -34,6 +34,8 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
 }
 
 - (void)showActivityIndicatorViewInNavigationItem {
@@ -117,6 +119,16 @@
                      completion:nil];
 }
 
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError*)error contextInfo:(void*)contextInfo
+{
+    if (error){
+        NSLog(@"Error");
+        [self showAlert:@"保存失败..."];
+    }else {
+        NSLog(@"OK");
+        [self showAlert:@"保存成功！"];
+    }
+}
 
 /*
 #pragma mark - Navigation
@@ -132,6 +144,12 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     [self reloadView];
     [self.detailWebView stringByEvaluatingJavaScriptFromString:kTouchJavaScriptString];
+    
+    //清除JS缓存
+    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"WebKitCacheModelPreferenceKey"];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitDiskImageCacheEnabled"];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitOfflineWebApplicationCacheEnabled"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
@@ -190,17 +208,6 @@
         return NO;
     }
     return YES;
-}
-
-- (void)image:(UIImage *)image didFinishSavingWithError:(NSError*)error contextInfo:(void*)contextInfo
-{
-    if (error){
-        NSLog(@"Error");
-        [self showAlert:@"保存失败..."];
-    }else {
-        NSLog(@"OK");
-        [self showAlert:@"保存成功！"];
-    }
 }
 
 #pragma mark--UIPresentationController
