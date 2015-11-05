@@ -24,6 +24,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.detailWebView.delegate = self;
+    NSLog(@"%@", self.blogURL);
     NSURL *url = [NSURL URLWithString:self.blogURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self showActivityIndicatorViewInNavigationItem];
@@ -140,7 +141,7 @@
 }
 */
 
-#pragma mark
+#pragma mark - Webview代理方法
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     [self reloadView];
     [self.detailWebView stringByEvaluatingJavaScriptFromString:kTouchJavaScriptString];
@@ -153,10 +154,14 @@
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    if([error code] == NSURLErrorCancelled)
-        return; // Ignore this error
     
-    NSLog(@"%@", [error description]);
+    HUD.mode = MBProgressHUDModeText;
+    HUD.labelText = @"出现错误";
+    HUD.margin = 10.f;
+    HUD.removeFromSuperViewOnHide = YES;
+    [HUD hide:YES afterDelay:2];
+    
+    NSLog(@"错误为：%@", [error description]);
     
 }
 

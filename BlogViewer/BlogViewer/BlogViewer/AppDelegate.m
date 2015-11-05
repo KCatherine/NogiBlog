@@ -40,6 +40,11 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *path = [documentDirectory stringByAppendingPathComponent:@"BlogList.plist"];
+    NSMutableArray *array = [[NSMutableArray alloc] initWithContentsOfFile:path];
+    [array removeAllObjects];
+    [array writeToFile:path atomically:YES];
 }
 
 @end

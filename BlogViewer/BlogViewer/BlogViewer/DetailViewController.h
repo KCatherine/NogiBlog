@@ -16,7 +16,7 @@
     NSString *_imgURL;  // 用于UIWebView保存图片
 }
 
-@property (weak, nonatomic) NSString *blogURL;
+@property (strong, nonatomic) NSString *blogURL;
 
 @end
 

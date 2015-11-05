@@ -17,56 +17,66 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="BlogTitleCell" rowHeight="92" id="2En-Di-cTR" customClass="BlogTitleTableViewCell">
-                                <rect key="frame" x="0.0" y="86" width="600" height="92"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="BlogTitleCell" rowHeight="91" id="2En-Di-cTR" customClass="BlogTitleTableViewCell">
+                                <rect key="frame" x="0.0" y="86" width="600" height="91"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2En-Di-cTR" id="13P-PG-8el">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="92"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="90.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="渡辺みり愛" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q9S-bu-637">
-                                            <rect key="frame" x="8" y="8" width="70" height="14"/>
-                                            <animations/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" red="1" green="0.10558169933156669" blue="0.61648710793719363" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8888/88/88 88:88" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmZ-74-U0R">
-                                            <rect key="frame" x="436" y="8" width="123" height="14"/>
+                                            <rect key="frame" x="436" y="8" width="123" height="13"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.43529411764705883" green="0.44313725490196076" blue="0.47450980392156861" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="博客标题长又长长又长长又长长又长长又长长又长长又长长又长长又长长又长长又长" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0HQ-pX-zlm">
-                                            <rect key="frame" x="8" y="30" width="551" height="54"/>
+                                            <rect key="frame" x="60" y="29" width="499" height="54"/>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="54" id="cEr-gz-tOx"/>
+                                                <constraint firstAttribute="height" constant="54" id="mYV-K2-6jk"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sZ5-6P-37i">
+                                            <rect key="frame" x="8" y="29" width="44" height="53"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="44" id="532-87-Yeu"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="渡辺みり愛" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q9S-bu-637">
+                                            <rect key="frame" x="60" y="8" width="70" height="13"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="1" green="0.10558169933156669" blue="0.61648710793719363" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <animations/>
                                     <constraints>
+                                        <constraint firstItem="0HQ-pX-zlm" firstAttribute="top" secondItem="sZ5-6P-37i" secondAttribute="top" id="1qY-k0-dwF"/>
+                                        <constraint firstItem="0HQ-pX-zlm" firstAttribute="centerY" secondItem="sZ5-6P-37i" secondAttribute="centerY" id="5Z1-Ve-29U"/>
                                         <constraint firstItem="q9S-bu-637" firstAttribute="firstBaseline" secondItem="hmZ-74-U0R" secondAttribute="firstBaseline" id="5zz-If-Iwn"/>
-                                        <constraint firstItem="0HQ-pX-zlm" firstAttribute="leading" secondItem="13P-PG-8el" secondAttribute="leadingMargin" id="7ie-ie-MG2"/>
-                                        <constraint firstItem="0HQ-pX-zlm" firstAttribute="top" secondItem="hmZ-74-U0R" secondAttribute="bottom" constant="8" symbolic="YES" id="AE0-ub-mbr"/>
                                         <constraint firstItem="hmZ-74-U0R" firstAttribute="top" secondItem="13P-PG-8el" secondAttribute="topMargin" id="Ap0-SF-gum"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="0HQ-pX-zlm" secondAttribute="bottom" constant="-0.5" id="C5X-mz-t2S"/>
                                         <constraint firstItem="0HQ-pX-zlm" firstAttribute="leading" secondItem="q9S-bu-637" secondAttribute="leading" id="Dob-g9-OFH"/>
+                                        <constraint firstItem="0HQ-pX-zlm" firstAttribute="leading" secondItem="q9S-bu-637" secondAttribute="leading" id="Gz0-yU-3l9"/>
+                                        <constraint firstItem="0HQ-pX-zlm" firstAttribute="trailing" secondItem="13P-PG-8el" secondAttribute="trailingMargin" id="N0i-tN-MnW"/>
+                                        <constraint firstItem="sZ5-6P-37i" firstAttribute="leading" secondItem="13P-PG-8el" secondAttribute="leadingMargin" id="ORI-0I-CpB"/>
                                         <constraint firstItem="hmZ-74-U0R" firstAttribute="baseline" secondItem="q9S-bu-637" secondAttribute="baseline" id="Pix-uk-iYq"/>
+                                        <constraint firstItem="0HQ-pX-zlm" firstAttribute="top" secondItem="q9S-bu-637" secondAttribute="bottom" constant="8" symbolic="YES" id="QHW-yp-R2b"/>
                                         <constraint firstItem="0HQ-pX-zlm" firstAttribute="top" secondItem="q9S-bu-637" secondAttribute="bottom" constant="8" symbolic="YES" id="YNU-n2-R75"/>
-                                        <constraint firstItem="0HQ-pX-zlm" firstAttribute="trailing" secondItem="13P-PG-8el" secondAttribute="trailingMargin" id="c5a-9J-jWd"/>
                                         <constraint firstItem="hmZ-74-U0R" firstAttribute="firstBaseline" secondItem="q9S-bu-637" secondAttribute="firstBaseline" id="cq3-Bq-BSF"/>
                                         <constraint firstItem="0HQ-pX-zlm" firstAttribute="trailing" secondItem="13P-PG-8el" secondAttribute="trailingMargin" id="fdM-he-4BN"/>
                                         <constraint firstItem="hmZ-74-U0R" firstAttribute="top" secondItem="13P-PG-8el" secondAttribute="topMargin" id="lde-Il-nKO"/>
                                         <constraint firstItem="0HQ-pX-zlm" firstAttribute="trailing" secondItem="hmZ-74-U0R" secondAttribute="trailing" id="m9B-Ks-zdc"/>
-                                        <constraint firstItem="hmZ-74-U0R" firstAttribute="trailing" secondItem="0HQ-pX-zlm" secondAttribute="trailing" id="tbL-i8-Z4j"/>
+                                        <constraint firstItem="0HQ-pX-zlm" firstAttribute="leading" secondItem="sZ5-6P-37i" secondAttribute="trailing" constant="8" symbolic="YES" id="scd-B8-w51"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="0HQ-pX-zlm" secondAttribute="bottom" constant="-0.5" id="wul-8Y-KVa"/>
-                                        <constraint firstItem="q9S-bu-637" firstAttribute="leading" secondItem="0HQ-pX-zlm" secondAttribute="leading" id="yUB-Zl-V3N"/>
+                                        <constraint firstItem="0HQ-pX-zlm" firstAttribute="trailing" secondItem="hmZ-74-U0R" secondAttribute="trailing" id="wxX-6W-M1S"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="0HQ-pX-zlm" secondAttribute="bottom" constant="-0.5" id="xbl-me-8aJ"/>
                                         <constraint firstItem="q9S-bu-637" firstAttribute="baseline" secondItem="hmZ-74-U0R" secondAttribute="baseline" id="zgx-Cr-Lyl"/>
                                     </constraints>
                                     <variation key="default">
@@ -97,6 +107,7 @@
                                 <animations/>
                                 <connections>
                                     <outlet property="blogTitle" destination="0HQ-pX-zlm" id="Whz-Ob-OFB"/>
+                                    <outlet property="memberIcon" destination="sZ5-6P-37i" id="wSa-j9-yTn"/>
                                     <outlet property="memberName" destination="q9S-bu-637" id="hIh-oG-pLI"/>
                                     <outlet property="releaseTime" destination="hmZ-74-U0R" id="5Dg-Mn-q5n"/>
                                     <segue destination="pff-ro-jbQ" kind="show" identifier="toWebView" id="06e-en-bqP"/>
@@ -110,19 +121,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Blogs" id="wCL-o0-bjA">
-                        <barButtonItem key="leftBarButtonItem" image="Menu_24.226579520697px_1183427_easyicon.net.png" id="CYG-Li-f5y">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="UFn-Aa-GSj">
                             <connections>
-                                <action selector="jumpToBlog:" destination="war-Rj-rJt" id="4lI-Me-7EN"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="baj-Jq-o99">
-                            <connections>
-                                <action selector="RefreshBlog:" destination="war-Rj-rJt" id="7Ui-iK-uma"/>
+                                <action selector="RefreshBlog:" destination="war-Rj-rJt" id="NAu-1A-0Ov"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="BookMark" destination="CYG-Li-f5y" id="0qV-cZ-uf3"/>
                         <outlet property="tableView" destination="046-hh-2Og" id="kFW-wg-aKW"/>
                     </connections>
                 </tableViewController>
@@ -146,9 +151,15 @@
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <animations/>
                                 <items>
-                                    <barButtonItem title="后退" id="IeB-T0-R6k">
+                                    <barButtonItem image="arrow_back_32px_1181650_easyicon.net.png" id="IeB-T0-R6k">
                                         <connections>
                                             <action selector="backToPage:" destination="pff-ro-jbQ" id="yEf-fI-TJ9"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="wia-Pb-7rk"/>
+                                    <barButtonItem systemItem="refresh" id="IqD-qy-9gj">
+                                        <connections>
+                                            <action selector="refreshPage:" destination="pff-ro-jbQ" id="sl5-rm-J8G"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -198,11 +209,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="p8q-Ed-ZbJ">
                         <barButtonItem key="backBarButtonItem" title="首页" id="XXT-ve-yIo"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="akJ-Gj-Hp9">
-                            <connections>
-                                <action selector="refreshPage:" destination="pff-ro-jbQ" id="MI2-8e-VFm"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="detailWebView" destination="gHr-lm-sD5" id="cMM-8x-VbJ"/>
@@ -231,6 +237,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Menu_24.226579520697px_1183427_easyicon.net.png" width="24" height="15"/>
+        <image name="arrow_back_32px_1181650_easyicon.net.png" width="32" height="32"/>
     </resources>
 </document>

@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *memberName;
 @property (weak, nonatomic) IBOutlet UILabel *releaseTime;
 @property (weak, nonatomic) IBOutlet UILabel *blogTitle;
+@property (weak, nonatomic) IBOutlet UIImageView *memberIcon;
 
 @end
