@@ -17,6 +17,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    // /*设置图片与名称对称的代码
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSString *plistPath = [bundle pathForResource:@"nameWithIcon" ofType:@"plist"];
+    self.nameWithIcon = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+    self.memberNameFromPlist = [self.nameWithIcon objectForKey:@"name"];
+    self.memberIconFromPlist = [self.nameWithIcon objectForKey:@"icon"];
+    // */
+    
     return YES;
 }
 

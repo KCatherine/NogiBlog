@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 YangJing. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "ViewController.h"
 #import "DetailViewController.h"
 #import "BlogTitleTableViewCell.h"
@@ -22,37 +23,22 @@
 }
 
 @property (assign, nonatomic) NSInteger blogPageIndex;
-@property (strong, nonatomic) NSString *htmlCache;
+@property (copy, nonatomic) NSString *htmlCache;
 @property (strong, nonatomic) NSArray *catchedBlogs;
-
-// /*图片与名称对应代码
-@property (strong, nonatomic) NSDictionary *nameWithIcon;
-@property (strong, nonatomic) NSArray *memberNameFromPlist;
-@property (strong, nonatomic) NSArray *memberIconFromPlist;
-// */
-/*
-- (IBAction)RefreshBlog:(id)sender;
-- (IBAction)jumpToBlog:(id)sender;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *BookMark;
-*/
 
 @end
 
-@implementation ViewController
+@implementation ViewController {
+    AppDelegate *_appDelegate;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    
-// /*设置图片与名称对称的代码
-    NSBundle *bundle = [NSBundle mainBundle];
-    NSString *plistPath = [bundle pathForResource:@"nameWithIcon" ofType:@"plist"];
-    self.nameWithIcon = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
-    self.memberNameFromPlist = [self.nameWithIcon objectForKey:@"name"];
-    self.memberIconFromPlist = [self.nameWithIcon objectForKey:@"icon"];
-// */
+    _appDelegate = [UIApplication sharedApplication].delegate;
+
     self.blogPageIndex = 1;
     [self creatEditableCopyOfDatabaseIfNeed];
     [self goToPage:self.blogPageIndex];
@@ -63,9 +49,9 @@
         }
     }];
     // 设置了底部inset
-    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 5, 0);
     // 忽略掉底部inset
-    self.tableView.footer.ignoredScrollViewContentInsetBottom = 30;
+    self.tableView.footer.ignoredScrollViewContentInsetBottom = 5;
 }
 
 - (void)goToPage:(int)Index {
@@ -114,7 +100,6 @@
         HUD.removeFromSuperViewOnHide = YES;
         [HUD hide:YES afterDelay:5];
         
-//        self.navigationItem.prompt = @"无法连接到服务器";
         return NO;
     }
     
@@ -274,9 +259,6 @@
     NSString *path = [self applicationDocumentsDirectoryFile];
     NSMutableArray *array = [[NSMutableArray alloc] initWithContentsOfFile:path];
     return [array count];
-    
-    //    return [self.catchedBlogs count];
-    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -293,19 +275,19 @@
         cell.blogTitle.text = [[array objectAtIndex:i] objectForKey:@"blogTitle"];
         cell.releaseTime.text = [[array objectAtIndex:i] objectForKey:@"releaseTime"];
     }
-/*
-    cell.memberName.text = [self.htmlCache substringWithRange:[[self.catchedBlogs objectAtIndex:row] rangeAtIndex:1]];
-    cell.blogTitle.text = [self.htmlCache substringWithRange:[[self.catchedBlogs objectAtIndex:row] rangeAtIndex:3]];
-    cell.releaseTime.text = [self.htmlCache substringWithRange:[[self.catchedBlogs objectAtIndex:row] rangeAtIndex:4]];
-*/
     
 // /*设置表格中成员图片代码
-    NSUInteger nameAtRow = [self.memberNameFromPlist indexOfObject:cell.memberName.text];
-    NSString *imagePath = [self.memberIconFromPlist objectAtIndex:nameAtRow];
+    NSUInteger nameAtRow = [_appDelegate.memberNameFromPlist indexOfObject:cell.memberName.text];
+    NSString *imagePath = [_appDelegate.memberIconFromPlist objectAtIndex:nameAtRow];
     imagePath = [imagePath stringByAppendingString:@".JPG"];
     cell.memberIcon.image = [UIImage imageNamed:imagePath];
 // */
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView deselectRowAtIndexPath:indexPath
+                                  animated:YES];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue
@@ -320,18 +302,8 @@
         detailViewController.blogURL = [[array objectAtIndex:selectedIndex] objectForKey:@"blogURL"];
         
         detailViewController.title = [[array objectAtIndex:selectedIndex] objectForKey:@"memberName"];
-/*
-        self.urlString = [self.htmlCache substringWithRange:[[self.catchedBlogs objectAtIndex:selectedIndex] rangeAtIndex:2]];
-        
-        detailViewController.blogURL = self.urlString;
-        detailViewController.title = [self.htmlCache substringWithRange:[[self.catchedBlogs objectAtIndex:selectedIndex] rangeAtIndex:1]];
-*/
-    }
-}
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.tableView deselectRowAtIndexPath:indexPath
-                                  animated:YES];
+    }
 }
 
 @end

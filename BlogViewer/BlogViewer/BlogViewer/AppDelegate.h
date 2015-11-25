@@ -12,6 +12,11 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+// /*图片与名称对应代码
+@property (strong, nonatomic) NSDictionary *nameWithIcon;
+@property (strong, nonatomic) NSArray *memberNameFromPlist;
+@property (strong, nonatomic) NSArray *memberIconFromPlist;
+// */
 
 @end
 

@@ -27,7 +27,7 @@
     NSLog(@"%@", self.blogURL);
     NSURL *url = [NSURL URLWithString:self.blogURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [self showActivityIndicatorViewInNavigationItem];
+//    [self showActivityIndicatorViewInNavigationItem];
     [self.detailWebView loadRequest:request];
 
 }
@@ -142,6 +142,10 @@
 */
 
 #pragma mark - Webview代理方法
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    [self showActivityIndicatorViewInNavigationItem];
+}
+
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     [self reloadView];
     [self.detailWebView stringByEvaluatingJavaScriptFromString:kTouchJavaScriptString];
