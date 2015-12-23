@@ -22,6 +22,7 @@
     MBProgressHUD *HUD;
 }
 
+@property (strong, nonatomic) NSString *urlString;
 @property (assign, nonatomic) NSInteger blogPageIndex;
 @property (copy, nonatomic) NSString *htmlCache;
 @property (strong, nonatomic) NSArray *catchedBlogs;
@@ -42,6 +43,7 @@
     self.blogPageIndex = 1;
     [self creatEditableCopyOfDatabaseIfNeed];
     [self goToPage:self.blogPageIndex];
+    
     self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         self.blogPageIndex++;
         if (self.blogPageIndex <= 10) {
@@ -51,10 +53,28 @@
     // 设置了底部inset
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 5, 0);
     // 忽略掉底部inset
-    self.tableView.footer.ignoredScrollViewContentInsetBottom = 5;
+    self.tableView.footer.ignoredScrollViewContentInsetBottom = 20;
+    
+    //设置NavigationBar字体的颜色
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    //设置返回按钮
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.backBarButtonItem = item;
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    //[self showTabBar];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (void)goToPage:(int)Index {
+/*
     // The hud will dispable all input on the view (use the higest view possible in the view hierarchy)
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];
@@ -63,17 +83,12 @@
     HUD.delegate = self;
     
     // Show the HUD while the provided method executes in a new thread
-    [HUD show:YES];
-    
+    [HUD showWhileExecuting:@selector(findedResults:) onTarget:self withObject:nil animated:YES];
+*/
     if ([self isConnectionAvailable]) {
 
         [self catchHTMLBlogs:Index];
     }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (BOOL)isConnectionAvailable {
@@ -105,7 +120,6 @@
     
     return isExistenceNetwork;
 }
-
 
 - (IBAction)RefreshBlog:(id)sender {
     NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
@@ -154,7 +168,7 @@
 }
 */
 
-//持久化相关代码
+#pragma mark - 持久化相关代码
 - (void)creatEditableCopyOfDatabaseIfNeed {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *writableDBPath = [self applicationDocumentsDirectoryFile];
@@ -174,7 +188,29 @@
     return path;
 }
 
-//抓取博客代码
+- (void)writeIntoBlogPlist:(NSArray *)blogDetailArray {
+    
+    NSString *path = [self applicationDocumentsDirectoryFile];
+    NSMutableArray *array = [[NSMutableArray alloc] initWithContentsOfFile:path];
+    
+    //进行持久化
+    for (int i = 0; i < 5; i++) {
+        NSDictionary *dict = [NSDictionary dictionaryWithObjects:@[[self.htmlCache substringWithRange:[[blogDetailArray objectAtIndex:i] rangeAtIndex:1]],
+                                                                   [self.htmlCache substringWithRange:[[blogDetailArray objectAtIndex:i] rangeAtIndex:2]],
+                                                                   [self.htmlCache substringWithRange:[[blogDetailArray objectAtIndex:i] rangeAtIndex:3]],
+                                                                   [self.htmlCache substringWithRange:[[blogDetailArray objectAtIndex:i] rangeAtIndex:4]]]
+                                                         forKeys:@[@"memberName",
+                                                                   @"blogURL",
+                                                                   @"blogTitle",
+                                                                   @"releaseTime"]];
+        [array addObject:dict];
+    }
+    
+    [array writeToFile:path atomically:YES];
+    
+}
+
+#pragma mark - 抓取博客代码
 - (void)catchHTMLBlogs:(int)pageIndex {
     NSString *blogIndex = [NSString stringWithFormat:blogUrlString, pageIndex];
     NSURL *blogURL = [NSURL URLWithString:blogIndex];
@@ -185,13 +221,21 @@
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-                               self.htmlCache = [[NSString alloc] initWithData:data
-                                                                      encoding:NSUTF8StringEncoding];
-                               self.catchedBlogs = [self findedResults:self.htmlCache];
-                               
-                               [self.tableView reloadData];
-                               [self reloadView:connectionError];
+                               if (data) {
+                                   self.htmlCache = [[NSString alloc] initWithData:data
+                                                                          encoding:NSUTF8StringEncoding];
+                                   self.catchedBlogs = [self findedResults:self.htmlCache];
+                                   
+                                   [self writeIntoBlogPlist:self.catchedBlogs];
+                                   
+                                   [self.tableView reloadData];
+                                   [self reloadView:connectionError];
+                               } else {
+                                   [self reloadView:connectionError];
+                               }
                            }];
+    HUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    HUD.delegate = self;
 }
 
 - (NSArray *)findedResults:(NSString *)html {
@@ -203,31 +247,13 @@
     NSArray *detailsOfBlog = [regexOfBlogCatch matchesInString:html
                                                        options:NSMatchingReportCompletion
                                                          range:NSMakeRange(0, html.length)];
-    //在异步加载中进行持久化
-    NSString *path = [self applicationDocumentsDirectoryFile];
-    NSMutableArray *array = [[NSMutableArray alloc] initWithContentsOfFile:path];
-    
-    //进行持久化
-    for (int i = 0; i < 5; i++) {
-        NSDictionary *dict = [NSDictionary dictionaryWithObjects:@[[html substringWithRange:[[detailsOfBlog objectAtIndex:i] rangeAtIndex:1]],
-                                                                   [html substringWithRange:[[detailsOfBlog objectAtIndex:i] rangeAtIndex:2]],
-                                                                   [html substringWithRange:[[detailsOfBlog objectAtIndex:i] rangeAtIndex:3]],
-                                                                   [html substringWithRange:[[detailsOfBlog objectAtIndex:i] rangeAtIndex:4]]]
-                                                         forKeys:@[@"memberName",
-                                                                   @"blogURL",
-                                                                   @"blogTitle",
-                                                                   @"releaseTime"]];
-        [array addObject:dict];
-    }
-    
-    [array writeToFile:path atomically:YES];
     
     return detailsOfBlog;
 }
 
+#pragma mark - reloadView
 - (void)reloadView:(NSError *)connectionError {
     if (!connectionError) {
-        self.navigationItem.prompt = nil;
         [self.tableView.footer endRefreshing];
         [HUD hide:YES];
     } else {
@@ -244,6 +270,21 @@
     
 }
 
+#pragma mark - TabBar操作代码
+- (void)showTabBar {
+    if (self.tabBarController.tabBar.hidden == NO) {
+        return;
+    }
+    UIView *contentView;
+    if ([[self.tabBarController.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]]) {
+        contentView = [self.tabBarController.view.subviews objectAtIndex:1];
+    } else {
+        contentView = [self.tabBarController.view.subviews objectAtIndex:0];
+    }
+    contentView.frame = CGRectMake(contentView.bounds.origin.x, contentView.bounds.origin.y,  contentView.bounds.size.width, contentView.bounds.size.height - self.tabBarController.tabBar.frame.size.height);
+    self.tabBarController.tabBar.hidden = NO;
+}
+
 #pragma mark - MBProgressHUDDelegate
 
 - (void)hudWasHidden:(MBProgressHUD *)hud {
@@ -252,7 +293,7 @@
     HUD = nil;
 }
 
-#pragma marks - TableView代理方法
+#pragma mark - TableView代理方法
 
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section {
@@ -290,6 +331,7 @@
                                   animated:YES];
 }
 
+#pragma mark - 控制器跳转代理
 - (void)prepareForSegue:(UIStoryboardSegue *)segue
                  sender:(id)sender {
     if ([segue.identifier isEqualToString:@"toWebView"]) {

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IIViewDeckController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -17,6 +18,12 @@
 @property (strong, nonatomic) NSArray *memberNameFromPlist;
 @property (strong, nonatomic) NSArray *memberIconFromPlist;
 // */
+
+@property (strong, nonatomic) UIViewController *centerViewController;
+@property (strong, nonatomic) UIViewController *nameViewController;
+
+
+- (IIViewDeckController *)generateControllerStack;
 
 @end
 

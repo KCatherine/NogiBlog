@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "LeftViewController.h"
+#import "ViewController.h"
+#import "MemberNameViewController.h"
 
 @interface AppDelegate ()
 
@@ -26,7 +29,34 @@
     self.memberIconFromPlist = [self.nameWithIcon objectForKey:@"icon"];
     // */
     
+    IIViewDeckController* deckController = [self generateControllerStack];
+    self.centerViewController = deckController.centerController;
+    
+    NSLog(@"init APP delegate = %@",self.centerViewController);
+    
+    /* To adjust speed of open/close animations, set either of these two properties. */
+    deckController.openSlideAnimationDuration = 0.15f;
+    deckController.closeSlideAnimationDuration = 0.3f;
+    
+    self.window.rootViewController = deckController;
+    [self.window makeKeyAndVisible];
+
     return YES;
+}
+
+- (IIViewDeckController *)generateControllerStack {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LeftViewController *leftController = [storyboard instantiateViewControllerWithIdentifier:@"LeftVC"];
+    ViewController *centerController = [storyboard instantiateViewControllerWithIdentifier:@"CenterVC"];
+    MemberNameViewController *nameController = [storyboard instantiateViewControllerWithIdentifier:@"MemberNameNV"];
+    
+    self.nameViewController = nameController;
+    
+    IIViewDeckController *deckController =  [[IIViewDeckController alloc] initWithCenterViewController:centerController
+                                                                                    leftViewController:leftController];
+    deckController.leftSize = 88;
+    
+    return deckController;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

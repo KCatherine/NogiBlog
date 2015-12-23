@@ -10,7 +10,5 @@
 
 @interface ViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate>
 
-@property (strong, nonatomic) NSString *urlString;
-
 @end
 

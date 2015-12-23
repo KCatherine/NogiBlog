@@ -27,11 +27,29 @@
     NSLog(@"%@", self.blogURL);
     NSURL *url = [NSURL URLWithString:self.blogURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-//    [self showActivityIndicatorViewInNavigationItem];
-    [self.detailWebView loadRequest:request];
-
+    [self showActivityIndicatorViewInNavigationItem];
+    if ([self isConnectionAvailable]) {
+        [self.detailWebView loadRequest:request];
+    }
+}
+/*
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    //[self hideTabBar];
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    }
+}
+*/
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -39,8 +57,38 @@
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
 }
 
-- (void)showActivityIndicatorViewInNavigationItem {
+- (BOOL)isConnectionAvailable {
+    
+    BOOL isExistenceNetwork = YES;
+    Reachability *reach = [Reachability reachabilityWithHostName:self.blogURL];
+    switch ([reach currentReachabilityStatus]) {
+        case NotReachable:
+            isExistenceNetwork = NO;
+            break;
+        case ReachableViaWiFi:
+            isExistenceNetwork = YES;
+            break;
+        case ReachableViaWWAN:
+            isExistenceNetwork = YES;
+            break;
+    }
+    
+    if (!isExistenceNetwork) {
+        
+        HUD.mode = MBProgressHUDModeText;
+        HUD.labelText = @"无法连接到服务器";
+        HUD.margin = 10.f;
+        HUD.removeFromSuperViewOnHide = YES;
+        [HUD hide:YES afterDelay:5];
+        
+        return NO;
+    }
+    
+    return isExistenceNetwork;
+}
 
+- (void)showActivityIndicatorViewInNavigationItem {
+/*
     // The hud will dispable all input on the view (use the higest view possible in the view hierarchy)
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];
@@ -49,15 +97,12 @@
     HUD.delegate = self;
     
     // Show the HUD while the provided method executes in a new thread
-
     [HUD show:YES];
- 
+*/
+    HUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    HUD.delegate = self;
+    
 }
-
-- (void)reloadView {
-    [HUD hide:YES];
-}
-
 
 - (void)handleLongTouch {
 //    NSLog(@"%@", _imgURL);
@@ -142,12 +187,9 @@
 */
 
 #pragma mark - Webview代理方法
-- (void)webViewDidStartLoad:(UIWebView *)webView {
-    [self showActivityIndicatorViewInNavigationItem];
-}
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    [self reloadView];
+    [HUD hide:YES];
     [self.detailWebView stringByEvaluatingJavaScriptFromString:kTouchJavaScriptString];
     
     //清除JS缓存
@@ -159,13 +201,15 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     
-    HUD.mode = MBProgressHUDModeText;
-    HUD.labelText = @"出现错误";
-    HUD.margin = 10.f;
-    HUD.removeFromSuperViewOnHide = YES;
-    [HUD hide:YES afterDelay:2];
-    
-    NSLog(@"错误为：%@", [error description]);
+    if ([error code] != NSURLErrorCancelled) {
+        HUD.mode = MBProgressHUDModeText;
+        HUD.labelText = @"出现错误";
+        HUD.margin = 10.f;
+        HUD.removeFromSuperViewOnHide = YES;
+        [HUD hide:YES afterDelay:2];
+        
+        NSLog(@"错误为：%@", [error description]);
+    }
     
 }
 
@@ -219,7 +263,7 @@
     return YES;
 }
 
-#pragma mark--UIPresentationController
+#pragma mark UIPresentationController
 
 - (void)popoverPresentationController:(UIPopoverPresentationController *)popoverPresentationController
           willRepositionPopoverToRect:(inout CGRect *)rect
@@ -227,7 +271,7 @@
     *rect = CGRectMake((CGRectGetWidth((*view).bounds)-2)*0.5f, (CGRectGetHeight((*view).bounds)-2)*0.5f, 2, 2);// 显示在中心位置
 }
 
-#pragma mark - MBProgressHUDDelegate
+#pragma mark MBProgressHUDDelegate
 
 - (void)hudWasHidden:(MBProgressHUD *)hud {
     // Remove HUD from screen when the HUD was hidded
@@ -235,6 +279,19 @@
     HUD = nil;
 }
 
+- (void)hideTabBar {
+    if (self.tabBarController.tabBar.hidden == YES) {
+        return;
+    }
+    UIView *contentView;
+    if ([[self.tabBarController.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]]) {
+        contentView = [self.tabBarController.view.subviews objectAtIndex:1];
+    } else {
+        contentView = [self.tabBarController.view.subviews objectAtIndex:0];
+    }
+    contentView.frame = CGRectMake(contentView.bounds.origin.x,  contentView.bounds.origin.y,  contentView.bounds.size.width, contentView.bounds.size.height + self.tabBarController.tabBar.frame.size.height);
+    self.tabBarController.tabBar.hidden = YES;
+}
 
 - (IBAction)backToPage:(id)sender {
     if ([self.detailWebView canGoBack]) {
@@ -244,7 +301,7 @@
 }
 
 - (IBAction)refreshPage:(id)sender {
-    
+
     [self showActivityIndicatorViewInNavigationItem];
     [self.detailWebView reload];
 

@@ -70,11 +70,16 @@
 		3934225E1BF635D1002FD612 /* IMG_1645.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 393422391BF635D1002FD612 /* IMG_1645.JPG */; };
 		3934225F1BF635D1002FD612 /* IMG_1646.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 3934223A1BF635D1002FD612 /* IMG_1646.JPG */; };
 		393422601BF635D1002FD612 /* IMG_1647.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 3934223B1BF635D1002FD612 /* IMG_1647.JPG */; };
+		395B17CE1C0BE9E4008A5D55 /* MemberNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 395B17CD1C0BE9E4008A5D55 /* MemberNameViewController.m */; };
 		397AF2911BA25CC500C93CEE /* BlogXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 397AF2901BA25CC500C93CEE /* BlogXMLParser.m */; };
 		3994CC9F1BD0EA1300074D43 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3994CC9E1BD0EA1300074D43 /* MBProgressHUD.m */; };
 		39C727801BB42F3600DF7473 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39C7277F1BB42F3600DF7473 /* Launch Screen.storyboard */; };
 		39C727871BB4F77F00DF7473 /* Nogizaka46.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 39C727861BB4F77F00DF7473 /* Nogizaka46.PNG */; };
 		39D553B81B70F3FC00C0E061 /* IMG_Staff.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 39D553B71B70F3FC00C0E061 /* IMG_Staff.JPG */; };
+		39D7FC6C1C0A8B69008F2E17 /* IISideController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D7FC661C0A8B69008F2E17 /* IISideController.m */; };
+		39D7FC6D1C0A8B69008F2E17 /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D7FC681C0A8B69008F2E17 /* IIViewDeckController.m */; };
+		39D7FC6E1C0A8B69008F2E17 /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D7FC6A1C0A8B69008F2E17 /* IIWrapController.m */; };
+		39D7FC831C0AA501008F2E17 /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D7FC821C0AA501008F2E17 /* LeftViewController.m */; };
 		8EEBD3C81B6C670F005F5350 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEBD3C71B6C670F005F5350 /* main.m */; };
 		8EEBD3CB1B6C670F005F5350 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEBD3CA1B6C670F005F5350 /* AppDelegate.m */; };
 		8EEBD3CE1B6C670F005F5350 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEBD3CD1B6C670F005F5350 /* ViewController.m */; };
@@ -216,6 +221,8 @@
 		393422391BF635D1002FD612 /* IMG_1645.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_1645.JPG; sourceTree = "<group>"; };
 		3934223A1BF635D1002FD612 /* IMG_1646.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_1646.JPG; sourceTree = "<group>"; };
 		3934223B1BF635D1002FD612 /* IMG_1647.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_1647.JPG; sourceTree = "<group>"; };
+		395B17CC1C0BE9E4008A5D55 /* MemberNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberNameViewController.h; sourceTree = "<group>"; };
+		395B17CD1C0BE9E4008A5D55 /* MemberNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberNameViewController.m; sourceTree = "<group>"; };
 		397AF28F1BA25CC500C93CEE /* BlogXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlogXMLParser.h; sourceTree = "<group>"; };
 		397AF2901BA25CC500C93CEE /* BlogXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlogXMLParser.m; sourceTree = "<group>"; };
 		3994CC9D1BD0EA1300074D43 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
@@ -223,6 +230,15 @@
 		39C7277F1BB42F3600DF7473 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		39C727861BB4F77F00DF7473 /* Nogizaka46.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Nogizaka46.PNG; sourceTree = "<group>"; };
 		39D553B71B70F3FC00C0E061 /* IMG_Staff.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_Staff.JPG; sourceTree = "<group>"; };
+		39D7FC651C0A8B69008F2E17 /* IISideController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IISideController.h; sourceTree = "<group>"; };
+		39D7FC661C0A8B69008F2E17 /* IISideController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IISideController.m; sourceTree = "<group>"; };
+		39D7FC671C0A8B69008F2E17 /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIViewDeckController.h; sourceTree = "<group>"; };
+		39D7FC681C0A8B69008F2E17 /* IIViewDeckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIViewDeckController.m; sourceTree = "<group>"; };
+		39D7FC691C0A8B69008F2E17 /* IIWrapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIWrapController.h; sourceTree = "<group>"; };
+		39D7FC6A1C0A8B69008F2E17 /* IIWrapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIWrapController.m; sourceTree = "<group>"; };
+		39D7FC6B1C0A8B69008F2E17 /* ViewDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewDeck.h; sourceTree = "<group>"; };
+		39D7FC811C0AA501008F2E17 /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
+		39D7FC821C0AA501008F2E17 /* LeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewController.m; sourceTree = "<group>"; };
 		8EEBD3C21B6C670F005F5350 /* BlogViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlogViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EEBD3C61B6C670F005F5350 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8EEBD3C71B6C670F005F5350 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -437,6 +453,7 @@
 		3994CC9C1BD0E9F400074D43 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				39D7FC641C0A8B69008F2E17 /* ViewDeck */,
 				3903D9611BEA13A200FE6A19 /* MJRefresh */,
 				3994CC9D1BD0EA1300074D43 /* MBProgressHUD.h */,
 				3994CC9E1BD0EA1300074D43 /* MBProgressHUD.m */,
@@ -455,10 +472,23 @@
 			name = XMLParser;
 			sourceTree = "<group>";
 		};
+		39D7FC641C0A8B69008F2E17 /* ViewDeck */ = {
+			isa = PBXGroup;
+			children = (
+				39D7FC651C0A8B69008F2E17 /* IISideController.h */,
+				39D7FC661C0A8B69008F2E17 /* IISideController.m */,
+				39D7FC671C0A8B69008F2E17 /* IIViewDeckController.h */,
+				39D7FC681C0A8B69008F2E17 /* IIViewDeckController.m */,
+				39D7FC691C0A8B69008F2E17 /* IIWrapController.h */,
+				39D7FC6A1C0A8B69008F2E17 /* IIWrapController.m */,
+				39D7FC6B1C0A8B69008F2E17 /* ViewDeck.h */,
+			);
+			path = ViewDeck;
+			sourceTree = "<group>";
+		};
 		8EEBD3B91B6C670F005F5350 = {
 			isa = PBXGroup;
 			children = (
-				3922DAC31B6F06B400926C01 /* SystemConfiguration.framework */,
 				8EEBD3C41B6C670F005F5350 /* BlogViewer */,
 				8EEBD3DE1B6C670F005F5350 /* BlogViewerTests */,
 				8EEBD3C31B6C670F005F5350 /* Products */,
@@ -479,10 +509,14 @@
 			children = (
 				8EEBD3C91B6C670F005F5350 /* AppDelegate.h */,
 				8EEBD3CA1B6C670F005F5350 /* AppDelegate.m */,
+				39D7FC811C0AA501008F2E17 /* LeftViewController.h */,
+				39D7FC821C0AA501008F2E17 /* LeftViewController.m */,
 				8EEBD3CC1B6C670F005F5350 /* ViewController.h */,
 				8EEBD3CD1B6C670F005F5350 /* ViewController.m */,
 				8EEBD3F11B6C92DE005F5350 /* DetailViewController.h */,
 				8EEBD3F21B6C92DE005F5350 /* DetailViewController.m */,
+				395B17CC1C0BE9E4008A5D55 /* MemberNameViewController.h */,
+				395B17CD1C0BE9E4008A5D55 /* MemberNameViewController.m */,
 				8EEBD3CF1B6C670F005F5350 /* Main.storyboard */,
 				39C7277F1BB42F3600DF7473 /* Launch Screen.storyboard */,
 				8EEBD3EB1B6C79CD005F5350 /* BlogTitleTableViewCell.h */,
@@ -498,6 +532,7 @@
 		8EEBD3C51B6C670F005F5350 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3922DAC31B6F06B400926C01 /* SystemConfiguration.framework */,
 				393422161BF635D1002FD612 /* 2015_11 */,
 				8EEBD3F61B6DA9F1005F5350 /* 2015_08 */,
 				8EEBD3C61B6C670F005F5350 /* Info.plist */,
@@ -758,6 +793,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				397AF2911BA25CC500C93CEE /* BlogXMLParser.m in Sources */,
+				39D7FC6D1C0A8B69008F2E17 /* IIViewDeckController.m in Sources */,
 				3903D9961BEA13A200FE6A19 /* MJRefreshBackGifFooter.m in Sources */,
 				3903D9931BEA13A200FE6A19 /* MJRefreshAutoGifFooter.m in Sources */,
 				3903D99A1BEA13A200FE6A19 /* MJRefreshNormalHeader.m in Sources */,
@@ -766,6 +802,7 @@
 				3903D9951BEA13A200FE6A19 /* MJRefreshAutoStateFooter.m in Sources */,
 				3903D99D1BEA13A200FE6A19 /* MJRefreshConst.m in Sources */,
 				8EEBD3CB1B6C670F005F5350 /* AppDelegate.m in Sources */,
+				395B17CE1C0BE9E4008A5D55 /* MemberNameViewController.m in Sources */,
 				3903D9A01BEA13A200FE6A19 /* UIView+MJExtension.m in Sources */,
 				8EEBD3C81B6C670F005F5350 /* main.m in Sources */,
 				3903D9991BEA13A200FE6A19 /* MJRefreshGifHeader.m in Sources */,
@@ -777,11 +814,14 @@
 				3903D9901BEA13A200FE6A19 /* MJRefreshComponent.m in Sources */,
 				3903D9981BEA13A200FE6A19 /* MJRefreshBackStateFooter.m in Sources */,
 				3903D9921BEA13A200FE6A19 /* MJRefreshHeader.m in Sources */,
+				39D7FC831C0AA501008F2E17 /* LeftViewController.m in Sources */,
 				8EEBD3F31B6C92DE005F5350 /* DetailViewController.m in Sources */,
 				3903D9941BEA13A200FE6A19 /* MJRefreshAutoNormalFooter.m in Sources */,
 				3903D98E1BEA13A200FE6A19 /* MJRefreshAutoFooter.m in Sources */,
+				39D7FC6C1C0A8B69008F2E17 /* IISideController.m in Sources */,
 				3903D9971BEA13A200FE6A19 /* MJRefreshBackNormalFooter.m in Sources */,
 				3903D98F1BEA13A200FE6A19 /* MJRefreshBackFooter.m in Sources */,
+				39D7FC6E1C0A8B69008F2E17 /* IIWrapController.m in Sources */,
 				3994CC9F1BD0EA1300074D43 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
