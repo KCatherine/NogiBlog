@@ -22,7 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
     self.detailWebView.delegate = self;
     NSLog(@"%@", self.blogURL);
     NSURL *url = [NSURL URLWithString:self.blogURL];
@@ -52,7 +52,6 @@
 */
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
     
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
 }

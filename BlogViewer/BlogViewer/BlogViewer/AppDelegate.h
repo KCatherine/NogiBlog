@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSDictionary *nameWithIcon;
 @property (strong, nonatomic) NSArray *memberNameFromPlist;
 @property (strong, nonatomic) NSArray *memberIconFromPlist;
+@property (strong, nonatomic) NSArray *ownBlogURLFromPlist;
 // */
 
 @property (strong, nonatomic) UIViewController *centerViewController;

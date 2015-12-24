@@ -1,25 +1,24 @@
 //
-//  ViewController.m
+//  MemberBlogTableViewController.m
 //  BlogViewer
 //
-//  Created by 123456 on 15/8/1.
-//  Copyright (c) 2015年 YangJing. All rights reserved.
+//  Created by 杨璟 on 15/12/23.
+//  Copyright © 2015年 YangJing. All rights reserved.
 //
 
 #import "BlogModel.h"
 #import "AppDelegate.h"
-#import "ViewController.h"
-#import "DetailViewController.h"
+#import "MemberBlogTableViewController.h"
 #import "BlogTitleTableViewCell.h"
+#import "DetailViewController.h"
 
 #import "Reachability.h"
 #import "MBProgressHUD.h"
 #import "MJRefresh.h"
 
-#define blogUrlString @"http://blog.nogizaka46.com/smph/?p=%d"
 #define blogCatchPattern @"<td class=\"heading\"><span class=\"author\">(.*?)</span> <span class=\"entrytitle\"><a href=\"(.*?)\" rel=\"bookmark\">(.*?)</a></span></td>.*?<div class=\"kijifoot\">(.*?)｜.*?</div>"
 
-@interface ViewController () <MBProgressHUDDelegate> {
+@interface MemberBlogTableViewController () <MBProgressHUDDelegate> {
     MBProgressHUD *HUD;
 }
 
@@ -31,7 +30,7 @@
 
 @end
 
-@implementation ViewController {
+@implementation MemberBlogTableViewController {
     AppDelegate *_appDelegate;
 }
 
@@ -41,9 +40,10 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     _appDelegate = [UIApplication sharedApplication].delegate;
-
+    
     self.blogPageIndex = 1;
     [self creatEditableCopyOfDatabaseIfNeed];
+    
     [self goToPage:self.blogPageIndex];
     
     self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
@@ -60,6 +60,9 @@
     //设置NavigationBar字体的颜色
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    //设置NavigationBar的颜色
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:108/255.0 green:19/255.0 blue:126/255.0 alpha:1.0]];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
     //设置返回按钮
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationItem.backBarButtonItem = item;
@@ -77,7 +80,7 @@
 
 - (void)goToPage:(int)Index {
     if ([self isConnectionAvailable]) {
-
+        
         [self catchHTMLBlogs:Index];
     }
 }
@@ -117,43 +120,43 @@
     [self goToPage:1];
 }
 /*
-- (IBAction)jumpToBlog:(id)sender {
-
-    UIAlertController *sheet = [UIAlertController alertControllerWithTitle:@"选择你想查看的页面"
-                                                                   message:nil
-                                                            preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *pageOne = [UIAlertAction actionWithTitle:@"第一页"
-                                                      style:UIAlertActionStyleDefault
-                                                    handler:^(UIAlertAction *action) {
-                                                        [self goToPage:1];
-                                                    }];
-    UIAlertAction *pageTwo = [UIAlertAction actionWithTitle:@"第二页"
-                                                      style:UIAlertActionStyleDefault
-                                                    handler:^(UIAlertAction *action) {
-                                                        [self goToPage:2];
-                                                    }];
-    UIAlertAction *pageThree = [UIAlertAction actionWithTitle:@"第三页"
-                                                        style:UIAlertActionStyleDefault
-                                                      handler:^(UIAlertAction *action) {
-                                                        [self goToPage:3];
-                                                      }];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
-                                                           style:UIAlertActionStyleCancel
-                                                         handler:nil];
-    [sheet addAction:pageOne];
-    [sheet addAction:pageTwo];
-    [sheet addAction:pageThree];
-    [sheet addAction:cancelAction];
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        sheet.modalPresentationStyle = UIModalPresentationPopover;
-        UIPopoverPresentationController *popPC = sheet.popoverPresentationController;
-        popPC.barButtonItem = self.BookMark;
-        popPC.permittedArrowDirections = UIPopoverArrowDirectionAny;
-    }
-    [self presentViewController:sheet animated:YES completion:nil];
-
-}
-*/
+ - (IBAction)jumpToBlog:(id)sender {
+ 
+ UIAlertController *sheet = [UIAlertController alertControllerWithTitle:@"选择你想查看的页面"
+ message:nil
+ preferredStyle:UIAlertControllerStyleActionSheet];
+ UIAlertAction *pageOne = [UIAlertAction actionWithTitle:@"第一页"
+ style:UIAlertActionStyleDefault
+ handler:^(UIAlertAction *action) {
+ [self goToPage:1];
+ }];
+ UIAlertAction *pageTwo = [UIAlertAction actionWithTitle:@"第二页"
+ style:UIAlertActionStyleDefault
+ handler:^(UIAlertAction *action) {
+ [self goToPage:2];
+ }];
+ UIAlertAction *pageThree = [UIAlertAction actionWithTitle:@"第三页"
+ style:UIAlertActionStyleDefault
+ handler:^(UIAlertAction *action) {
+ [self goToPage:3];
+ }];
+ UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
+ style:UIAlertActionStyleCancel
+ handler:nil];
+ [sheet addAction:pageOne];
+ [sheet addAction:pageTwo];
+ [sheet addAction:pageThree];
+ [sheet addAction:cancelAction];
+ if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+ sheet.modalPresentationStyle = UIModalPresentationPopover;
+ UIPopoverPresentationController *popPC = sheet.popoverPresentationController;
+ popPC.barButtonItem = self.BookMark;
+ popPC.permittedArrowDirections = UIPopoverArrowDirectionAny;
+ }
+ [self presentViewController:sheet animated:YES completion:nil];
+ 
+ }
+ */
 
 #pragma mark - 持久化相关代码
 - (void)creatEditableCopyOfDatabaseIfNeed {
@@ -162,24 +165,22 @@
     
     BOOL dbexits = [fileManager fileExistsAtPath:writableDBPath];
     if (!dbexits) {
-        NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"BlogList.plist"];
+        NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"MemberBlogList.plist"];
         NSError *error;
         BOOL success = [fileManager copyItemAtPath:defaultDBPath toPath:writableDBPath error:&error];
         NSAssert(success, @"错误写入文件");
     }
 }
 
-
-
 - (NSString *)applicationDocumentsDirectoryFile {
     NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *path = [documentDirectory stringByAppendingPathComponent:@"BlogList.plist"];
+    NSString *path = [documentDirectory stringByAppendingPathComponent:@"MemberBlogList.plist"];
     return path;
 }
 
 - (NSString *)applicationDocumentsDirectoryEmptyFile {
     NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *path = [documentDirectory stringByAppendingPathComponent:@"BlogList.plist"];
+    NSString *path = [documentDirectory stringByAppendingPathComponent:@"MemberBlogList.plist"];
     self.blogModelArray = [[NSMutableArray alloc] initWithContentsOfFile:path];
     [self.blogModelArray removeAllObjects];
     [self.blogModelArray writeToFile:path atomically:YES];
@@ -211,9 +212,9 @@
 
 #pragma mark - 抓取博客代码
 - (void)catchHTMLBlogs:(int)pageIndex {
-    NSString *blogIndex = [NSString stringWithFormat:blogUrlString, pageIndex];
+    NSString *blogIndex = [NSString stringWithFormat:self.toBeCatchedblogURL, pageIndex];
     NSURL *blogURL = [NSURL URLWithString:blogIndex];
-
+    
     NSURLRequest *request = [NSURLRequest requestWithURL:blogURL
                                              cachePolicy:NSURLRequestUseProtocolCachePolicy
                                          timeoutInterval:10.0f];
@@ -310,12 +311,12 @@
     BlogModel *blog = self.blogModelArray[row];
     cell.blog = blog;
     
-// /*设置表格中成员图片代码
+    // /*设置表格中成员图片代码
     NSUInteger nameAtRow = [_appDelegate.memberNameFromPlist indexOfObject:blog.memberName];
     NSString *imagePath = [_appDelegate.memberIconFromPlist objectAtIndex:nameAtRow];
     imagePath = [imagePath stringByAppendingString:@".JPG"];
     cell.memberIcon.image = [UIImage imageNamed:imagePath];
-// */
+    // */
     return cell;
 }
 
@@ -327,7 +328,7 @@
 #pragma mark - 控制器跳转代理
 - (void)prepareForSegue:(UIStoryboardSegue *)segue
                  sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"fromTopToWebView"]) {
+    if ([segue.identifier isEqualToString:@"fromMemberToWebView"]) {
         DetailViewController *detailViewController = segue.destinationViewController;
         NSInteger selectedIndex = [[self.tableView indexPathForSelectedRow] row];
         
@@ -336,7 +337,7 @@
         detailViewController.blogURL = blog.blogURL;
         
         detailViewController.title = blog.memberName;
-
+        
     }
 }
 

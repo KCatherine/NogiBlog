@@ -24,11 +24,6 @@
     
     _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:108/255.0 green:19/255.0 blue:126/255.0 alpha:1.0]];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
    //[self.navigationController setNavigationBarHidden:YES animated:YES];
@@ -40,37 +35,31 @@
 }
 
 - (UIViewController *)controllerForIndex:(int)index {
-
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    ViewController *centerController = [storyboard instantiateViewControllerWithIdentifier:@"CenterVC"];
     
     switch (index) {
         case 0:
-            if (self.viewDeckController.centerController == _appDelegate.centerViewController) {
+            if (self.viewDeckController.centerController != _appDelegate.centerViewController) {
                 NSLog(@"Top 5");
-                return self.viewDeckController.centerController;
+                NSLog(@"%@",self.viewDeckController.centerController);
+                return _appDelegate.centerViewController;
             } else {
-                _appDelegate.centerViewController = centerController;
-                NSLog(@"now = %@",self.viewDeckController.centerController);
-                NSLog(@"center = %@",centerController);
-                NSLog(@"return new center");
-                return centerController;
+                return self.viewDeckController.centerController;
             }
         case 1:
-            if (self.viewDeckController.centerController == _appDelegate.nameViewController) {
+            if (self.viewDeckController.centerController != _appDelegate.nameViewController) {
                 NSLog(@"Name");
-                return self.viewDeckController.centerController;
-            } else {
-                _appDelegate.centerViewController = _appDelegate.nameViewController;
+                NSLog(@"%@",self.viewDeckController.centerController);
                 return _appDelegate.nameViewController;
+            } else {
+                return self.viewDeckController.centerController;
             }
         case 2:
-            if (self.viewDeckController.centerController == _appDelegate.nameViewController) {
+            if (self.viewDeckController.centerController != _appDelegate.nameViewController) {
                 NSLog(@"Name");
-                return self.viewDeckController.centerController;
-            } else {
-                _appDelegate.centerViewController = _appDelegate.nameViewController;
+                NSLog(@"%@",self.viewDeckController.centerController);
                 return _appDelegate.nameViewController;
+            } else {
+                return self.viewDeckController.centerController;
             }
     }
     return nil;
@@ -90,6 +79,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     [self.viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller) {
+        NSLog(@"before click delegate center = %@", _appDelegate.centerViewController);
         controller.centerController = [self controllerForIndex:indexPath.row];
     }];
 }

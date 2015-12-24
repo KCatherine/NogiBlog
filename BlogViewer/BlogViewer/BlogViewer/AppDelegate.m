@@ -19,7 +19,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
     
     // /*设置图片与名称对称的代码
     NSBundle *bundle = [NSBundle mainBundle];
@@ -27,12 +26,13 @@
     self.nameWithIcon = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
     self.memberNameFromPlist = [self.nameWithIcon objectForKey:@"name"];
     self.memberIconFromPlist = [self.nameWithIcon objectForKey:@"icon"];
+    self.ownBlogURLFromPlist = [self.nameWithIcon objectForKey:@"ownBlogURL"];
     // */
     
     IIViewDeckController* deckController = [self generateControllerStack];
     self.centerViewController = deckController.centerController;
     
-    NSLog(@"init APP delegate = %@",self.centerViewController);
+    NSLog(@"init APP delegate center = %@",self.centerViewController);
     
     /* To adjust speed of open/close animations, set either of these two properties. */
     deckController.openSlideAnimationDuration = 0.15f;
@@ -78,12 +78,18 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    
     NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *path = [documentDirectory stringByAppendingPathComponent:@"BlogList.plist"];
-    NSMutableArray *array = [[NSMutableArray alloc] initWithContentsOfFile:path];
+    NSString *path1 = [documentDirectory stringByAppendingPathComponent:@"BlogList.plist"];
+    NSString *path2 = [documentDirectory stringByAppendingPathComponent:@"MemberBlogList.plist"];
+    
+    NSMutableArray *array = [[NSMutableArray alloc] initWithContentsOfFile:path1];
     [array removeAllObjects];
-    [array writeToFile:path atomically:YES];
+    [array writeToFile:path1 atomically:YES];
+    
+    array = [[NSMutableArray alloc] initWithContentsOfFile:path2];
+    [array removeAllObjects];
+    [array writeToFile:path2 atomically:YES];
 }
 
 @end

@@ -2,6 +2,47 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>ownBlogURL</key>
+	<array>
+		<string>http://blog.nogizaka46.com/manatsu.akimoto/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/erika.ikuta/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/rina.ikoma/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/karin.itou/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/junna.itou/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/marika.ito/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/sayuri.inoue/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/misa.eto/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/hina.kawago/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/mahiro.kawamura/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/hinako.kitano/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/asuka.saito/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/chiharu.saito/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/yuuri.saito/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/iori.sagara/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/reika.sakurai/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/kotoko.sasaki/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/mai.shiraishi/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/mai.shinuchi/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/ayane.suzuki/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/kazumi.takayama/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/ranze.terada/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/kana.nakada/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/himeka.nakamoto/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/seira.nagashima/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/nanase.nishino/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/ami.noujo/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/nanami.hashimoto/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/hina.higuchi/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/mai.fukagawa/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/minami.hoshino/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/miona.hori/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/sayuri.matsumura/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/rena.yamazaki/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/yumi.wakatsuki/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/miria.watanabe/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/maaya.wada/smph/?p=%d</string>
+		<string>http://blog.nogizaka46.com/staff/smph/?p=%d</string>
+	</array>
 	<key>name</key>
 	<array>
 		<string>秋元真夏</string>

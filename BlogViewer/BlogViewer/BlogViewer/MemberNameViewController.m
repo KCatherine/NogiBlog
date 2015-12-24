@@ -6,22 +6,27 @@
 //  Copyright © 2015年 YangJing. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "MemberNameViewController.h"
+#import "MemberBlogTableViewController.h"
+#import "MemberNameTableViewCell.h"
 
 @interface MemberNameViewController ()
 
 @end
 
-@implementation MemberNameViewController
+@implementation MemberNameViewController {
+    AppDelegate *_appDelegate;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    _appDelegate = [UIApplication sharedApplication].delegate;
+
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:108/255.0 green:19/255.0 blue:126/255.0 alpha:1.0]];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,25 +36,27 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 1;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 1;
+
+    return [_appDelegate.memberNameFromPlist count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
+    MemberNameTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"memberNameCell"];
+    NSUInteger row = [indexPath row];
+    for (int i = 0; i <= row; i++) {
+        cell.memberName.text = [_appDelegate.memberNameFromPlist objectAtIndex:i];
+        
+        //设置成员头像
+        NSString *imagePath = [_appDelegate.memberIconFromPlist objectAtIndex:i];
+        imagePath = [imagePath stringByAppendingString:@".JPG"];
+        cell.memberIcon.image = [UIImage imageNamed:imagePath];
+    }
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -85,14 +92,20 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+
+    if ([segue.identifier isEqualToString:@"toTableView"]) {
+        MemberBlogTableViewController *blogTableViewController = segue.destinationViewController;
+        NSInteger selectedIndex = [[self.tableView indexPathForSelectedRow] row];
+        
+        blogTableViewController.toBeCatchedblogURL = [_appDelegate.ownBlogURLFromPlist objectAtIndex:selectedIndex];
+        blogTableViewController.title = [_appDelegate.memberNameFromPlist objectAtIndex:selectedIndex];
+    }
 }
-*/
+
 
 @end

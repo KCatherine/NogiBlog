@@ -76,6 +76,10 @@
 		39C727801BB42F3600DF7473 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39C7277F1BB42F3600DF7473 /* Launch Screen.storyboard */; };
 		39C727871BB4F77F00DF7473 /* Nogizaka46.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 39C727861BB4F77F00DF7473 /* Nogizaka46.PNG */; };
 		39D553B81B70F3FC00C0E061 /* IMG_Staff.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 39D553B71B70F3FC00C0E061 /* IMG_Staff.JPG */; };
+		39D6BC521C2A9357009B5110 /* MemberBlogTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D6BC511C2A9357009B5110 /* MemberBlogTableViewController.m */; };
+		39D6BC541C2A96EF009B5110 /* MemberBlogList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39D6BC531C2A96EF009B5110 /* MemberBlogList.plist */; };
+		39D6BC571C2AE417009B5110 /* MemberNameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D6BC561C2AE417009B5110 /* MemberNameTableViewCell.m */; };
+		39D6BC771C2BEEB1009B5110 /* BlogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D6BC761C2BEEB1009B5110 /* BlogModel.m */; };
 		39D7FC6C1C0A8B69008F2E17 /* IISideController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D7FC661C0A8B69008F2E17 /* IISideController.m */; };
 		39D7FC6D1C0A8B69008F2E17 /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D7FC681C0A8B69008F2E17 /* IIViewDeckController.m */; };
 		39D7FC6E1C0A8B69008F2E17 /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D7FC6A1C0A8B69008F2E17 /* IIWrapController.m */; };
@@ -230,6 +234,13 @@
 		39C7277F1BB42F3600DF7473 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		39C727861BB4F77F00DF7473 /* Nogizaka46.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Nogizaka46.PNG; sourceTree = "<group>"; };
 		39D553B71B70F3FC00C0E061 /* IMG_Staff.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_Staff.JPG; sourceTree = "<group>"; };
+		39D6BC501C2A9357009B5110 /* MemberBlogTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberBlogTableViewController.h; sourceTree = "<group>"; };
+		39D6BC511C2A9357009B5110 /* MemberBlogTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberBlogTableViewController.m; sourceTree = "<group>"; };
+		39D6BC531C2A96EF009B5110 /* MemberBlogList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MemberBlogList.plist; sourceTree = "<group>"; };
+		39D6BC551C2AE417009B5110 /* MemberNameTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberNameTableViewCell.h; sourceTree = "<group>"; };
+		39D6BC561C2AE417009B5110 /* MemberNameTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberNameTableViewCell.m; sourceTree = "<group>"; };
+		39D6BC751C2BEEB1009B5110 /* BlogModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlogModel.h; sourceTree = "<group>"; };
+		39D6BC761C2BEEB1009B5110 /* BlogModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlogModel.m; sourceTree = "<group>"; };
 		39D7FC651C0A8B69008F2E17 /* IISideController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IISideController.h; sourceTree = "<group>"; };
 		39D7FC661C0A8B69008F2E17 /* IISideController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IISideController.m; sourceTree = "<group>"; };
 		39D7FC671C0A8B69008F2E17 /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIViewDeckController.h; sourceTree = "<group>"; };
@@ -509,6 +520,8 @@
 			children = (
 				8EEBD3C91B6C670F005F5350 /* AppDelegate.h */,
 				8EEBD3CA1B6C670F005F5350 /* AppDelegate.m */,
+				39D6BC751C2BEEB1009B5110 /* BlogModel.h */,
+				39D6BC761C2BEEB1009B5110 /* BlogModel.m */,
 				39D7FC811C0AA501008F2E17 /* LeftViewController.h */,
 				39D7FC821C0AA501008F2E17 /* LeftViewController.m */,
 				8EEBD3CC1B6C670F005F5350 /* ViewController.h */,
@@ -517,10 +530,14 @@
 				8EEBD3F21B6C92DE005F5350 /* DetailViewController.m */,
 				395B17CC1C0BE9E4008A5D55 /* MemberNameViewController.h */,
 				395B17CD1C0BE9E4008A5D55 /* MemberNameViewController.m */,
+				39D6BC501C2A9357009B5110 /* MemberBlogTableViewController.h */,
+				39D6BC511C2A9357009B5110 /* MemberBlogTableViewController.m */,
 				8EEBD3CF1B6C670F005F5350 /* Main.storyboard */,
 				39C7277F1BB42F3600DF7473 /* Launch Screen.storyboard */,
 				8EEBD3EB1B6C79CD005F5350 /* BlogTitleTableViewCell.h */,
 				8EEBD3EC1B6C79CD005F5350 /* BlogTitleTableViewCell.m */,
+				39D6BC551C2AE417009B5110 /* MemberNameTableViewCell.h */,
+				39D6BC561C2AE417009B5110 /* MemberNameTableViewCell.m */,
 				3922DACA1B6F2C7700926C01 /* Images.xcassets */,
 				3994CC9C1BD0E9F400074D43 /* ThirdParty */,
 				39C727831BB43E8100DF7473 /* XMLParser */,
@@ -539,6 +556,7 @@
 				8EEBD3C71B6C670F005F5350 /* main.m */,
 				8EEBD4411B6DAAAC005F5350 /* nameWithIcon.plist */,
 				3903D95F1BEA0EB800FE6A19 /* BlogList.plist */,
+				39D6BC531C2A96EF009B5110 /* MemberBlogList.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -764,6 +782,7 @@
 				39D553B81B70F3FC00C0E061 /* IMG_Staff.JPG in Resources */,
 				8EEBD4241B6DA9F1005F5350 /* IMG_0239.JPG in Resources */,
 				3934225B1BF635D1002FD612 /* IMG_1642.JPG in Resources */,
+				39D6BC541C2A96EF009B5110 /* MemberBlogList.plist in Resources */,
 				3934223C1BF635D1002FD612 /* IMG_1611.JPG in Resources */,
 				8EEBD4311B6DA9F1005F5350 /* IMG_0252.JPG in Resources */,
 				393422541BF635D1002FD612 /* IMG_1635.JPG in Resources */,
@@ -794,6 +813,7 @@
 			files = (
 				397AF2911BA25CC500C93CEE /* BlogXMLParser.m in Sources */,
 				39D7FC6D1C0A8B69008F2E17 /* IIViewDeckController.m in Sources */,
+				39D6BC571C2AE417009B5110 /* MemberNameTableViewCell.m in Sources */,
 				3903D9961BEA13A200FE6A19 /* MJRefreshBackGifFooter.m in Sources */,
 				3903D9931BEA13A200FE6A19 /* MJRefreshAutoGifFooter.m in Sources */,
 				3903D99A1BEA13A200FE6A19 /* MJRefreshNormalHeader.m in Sources */,
@@ -816,11 +836,13 @@
 				3903D9921BEA13A200FE6A19 /* MJRefreshHeader.m in Sources */,
 				39D7FC831C0AA501008F2E17 /* LeftViewController.m in Sources */,
 				8EEBD3F31B6C92DE005F5350 /* DetailViewController.m in Sources */,
+				39D6BC771C2BEEB1009B5110 /* BlogModel.m in Sources */,
 				3903D9941BEA13A200FE6A19 /* MJRefreshAutoNormalFooter.m in Sources */,
 				3903D98E1BEA13A200FE6A19 /* MJRefreshAutoFooter.m in Sources */,
 				39D7FC6C1C0A8B69008F2E17 /* IISideController.m in Sources */,
 				3903D9971BEA13A200FE6A19 /* MJRefreshBackNormalFooter.m in Sources */,
 				3903D98F1BEA13A200FE6A19 /* MJRefreshBackFooter.m in Sources */,
+				39D6BC521C2A9357009B5110 /* MemberBlogTableViewController.m in Sources */,
 				39D7FC6E1C0A8B69008F2E17 /* IIWrapController.m in Sources */,
 				3994CC9F1BD0EA1300074D43 /* MBProgressHUD.m in Sources */,
 			);

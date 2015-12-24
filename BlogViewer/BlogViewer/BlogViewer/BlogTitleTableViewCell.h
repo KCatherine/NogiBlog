@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BlogModel.h"
 
 @interface BlogTitleTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *memberName;
-@property (weak, nonatomic) IBOutlet UILabel *releaseTime;
-@property (weak, nonatomic) IBOutlet UILabel *blogTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *memberIcon;
+
+@property (strong, nonatomic) BlogModel *blog;
 
 @end
