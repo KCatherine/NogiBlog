@@ -11,6 +11,8 @@
 #import "MemberBlogTableViewController.h"
 #import "MemberNameTableViewCell.h"
 
+#define OWN_HTML @"http://akbdata.com/json/i/v2/id/blog/%@/200/0"
+
 @interface MemberNameViewController ()
 
 @end
@@ -23,9 +25,6 @@
     [super viewDidLoad];
     
     _appDelegate = [UIApplication sharedApplication].delegate;
-
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:108/255.0 green:19/255.0 blue:126/255.0 alpha:1.0]];
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
     
 }
 
@@ -41,57 +40,23 @@
     return [_appDelegate.memberNameFromPlist count];
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MemberNameTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"memberNameCell"];
     NSUInteger row = [indexPath row];
-    for (int i = 0; i <= row; i++) {
-        cell.memberName.text = [_appDelegate.memberNameFromPlist objectAtIndex:i];
+        cell.memberName.text = [_appDelegate.memberNameFromPlist objectAtIndex:row];
         
         //设置成员头像
-        NSString *imagePath = [_appDelegate.memberIconFromPlist objectAtIndex:i];
+        NSString *imagePath = [_appDelegate.memberIconFromPlist objectAtIndex:row];
         imagePath = [imagePath stringByAppendingString:@".JPG"];
         cell.memberIcon.image = [UIImage imageNamed:imagePath];
-    }
     
     return cell;
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView deselectRowAtIndexPath:indexPath
+                                  animated:YES];
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 
 #pragma mark - Navigation
 
@@ -102,7 +67,8 @@
         MemberBlogTableViewController *blogTableViewController = segue.destinationViewController;
         NSInteger selectedIndex = [[self.tableView indexPathForSelectedRow] row];
         
-        blogTableViewController.toBeCatchedblogURL = [_appDelegate.ownBlogURLFromPlist objectAtIndex:selectedIndex];
+        NSString *ownID = [_appDelegate.memberIDFromPlist objectAtIndex:selectedIndex];
+        blogTableViewController.toBeCatchedblogURL = [NSString stringWithFormat:OWN_HTML, ownID];
         blogTableViewController.title = [_appDelegate.memberNameFromPlist objectAtIndex:selectedIndex];
     }
 }

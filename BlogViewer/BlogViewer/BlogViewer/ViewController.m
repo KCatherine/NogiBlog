@@ -16,18 +16,14 @@
 #import "MBProgressHUD.h"
 #import "MJRefresh.h"
 
-#define blogUrlString @"http://blog.nogizaka46.com/smph/?p=%d"
-#define blogCatchPattern @"<td class=\"heading\"><span class=\"author\">(.*?)</span> <span class=\"entrytitle\"><a href=\"(.*?)\" rel=\"bookmark\">(.*?)</a></span></td>.*?<div class=\"kijifoot\">(.*?)｜.*?</div>"
+#define REQUEST_HTML @"http://akbdata.com/json/i/v2/blog/5/200/0"
 
 @interface ViewController () <MBProgressHUDDelegate> {
     MBProgressHUD *HUD;
 }
 
-@property (assign, nonatomic) NSInteger blogPageIndex;
-@property (copy, nonatomic) NSString *urlString;
-@property (copy, nonatomic) NSString *htmlCache;
-@property (strong, nonatomic) NSArray *catchedBlogs;
 @property (strong, nonatomic) NSMutableArray *blogModelArray;
+@property (nonatomic, strong) NSMutableArray *blogDictArray;
 
 @end
 
@@ -35,57 +31,47 @@
     AppDelegate *_appDelegate;
 }
 
+- (NSMutableArray *)blogModelArray {
+    if (!_blogModelArray) {
+        NSMutableArray *Array = [NSMutableArray arrayWithContentsOfFile:[self applicationDocumentsDirectoryEmptyFile]];
+        _blogModelArray = Array;
+    }
+    return _blogModelArray;
+}
+
+- (NSMutableArray *)blogDictArray {
+    if (!_blogDictArray) {
+        _blogDictArray = [NSMutableArray array];
+    }
+    return _blogDictArray;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
     _appDelegate = [UIApplication sharedApplication].delegate;
-
-    self.blogPageIndex = 1;
-    [self creatEditableCopyOfDatabaseIfNeed];
-    [self goToPage:self.blogPageIndex];
     
+    [self startRequest];
+#warning 未完成的下拉刷新
     self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        self.blogPageIndex++;
-        if (self.blogPageIndex <= 10) {
-            [self goToPage:self.blogPageIndex];
-        }
+        
     }];
+    
     // 设置了底部inset
-    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 5, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 10, 0);
     // 忽略掉底部inset
     self.tableView.footer.ignoredScrollViewContentInsetBottom = 20;
     
-    //设置NavigationBar字体的颜色
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
-    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     //设置返回按钮
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationItem.backBarButtonItem = item;
     
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    //[self showTabBar];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)goToPage:(int)Index {
-    if ([self isConnectionAvailable]) {
-
-        [self catchHTMLBlogs:Index];
-    }
-}
-
 - (BOOL)isConnectionAvailable {
     
     BOOL isExistenceNetwork = YES;
-    Reachability *reach = [Reachability reachabilityWithHostName:@"www.nogizaka46.com"];
+    Reachability *reach = [Reachability reachabilityWithHostName:@"http://akbdata.com"];
     switch ([reach currentReachabilityStatus]) {
         case NotReachable:
             isExistenceNetwork = NO;
@@ -112,142 +98,41 @@
     return isExistenceNetwork;
 }
 
-- (IBAction)RefreshBlog:(id)sender {
-    [self applicationDocumentsDirectoryEmptyFile];
-    [self goToPage:1];
-}
-/*
-- (IBAction)jumpToBlog:(id)sender {
-
-    UIAlertController *sheet = [UIAlertController alertControllerWithTitle:@"选择你想查看的页面"
-                                                                   message:nil
-                                                            preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *pageOne = [UIAlertAction actionWithTitle:@"第一页"
-                                                      style:UIAlertActionStyleDefault
-                                                    handler:^(UIAlertAction *action) {
-                                                        [self goToPage:1];
-                                                    }];
-    UIAlertAction *pageTwo = [UIAlertAction actionWithTitle:@"第二页"
-                                                      style:UIAlertActionStyleDefault
-                                                    handler:^(UIAlertAction *action) {
-                                                        [self goToPage:2];
-                                                    }];
-    UIAlertAction *pageThree = [UIAlertAction actionWithTitle:@"第三页"
-                                                        style:UIAlertActionStyleDefault
-                                                      handler:^(UIAlertAction *action) {
-                                                        [self goToPage:3];
-                                                      }];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
-                                                           style:UIAlertActionStyleCancel
-                                                         handler:nil];
-    [sheet addAction:pageOne];
-    [sheet addAction:pageTwo];
-    [sheet addAction:pageThree];
-    [sheet addAction:cancelAction];
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        sheet.modalPresentationStyle = UIModalPresentationPopover;
-        UIPopoverPresentationController *popPC = sheet.popoverPresentationController;
-        popPC.barButtonItem = self.BookMark;
-        popPC.permittedArrowDirections = UIPopoverArrowDirectionAny;
-    }
-    [self presentViewController:sheet animated:YES completion:nil];
-
-}
-*/
-
-#pragma mark - 持久化相关代码
-- (void)creatEditableCopyOfDatabaseIfNeed {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *writableDBPath = [self applicationDocumentsDirectoryEmptyFile];
-    
-    BOOL dbexits = [fileManager fileExistsAtPath:writableDBPath];
-    if (!dbexits) {
-        NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"BlogList.plist"];
-        NSError *error;
-        BOOL success = [fileManager copyItemAtPath:defaultDBPath toPath:writableDBPath error:&error];
-        NSAssert(success, @"错误写入文件");
-    }
-}
-
-
-
-- (NSString *)applicationDocumentsDirectoryFile {
-    NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *path = [documentDirectory stringByAppendingPathComponent:@"BlogList.plist"];
-    return path;
-}
-
-- (NSString *)applicationDocumentsDirectoryEmptyFile {
-    NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *path = [documentDirectory stringByAppendingPathComponent:@"BlogList.plist"];
-    self.blogModelArray = [[NSMutableArray alloc] initWithContentsOfFile:path];
-    [self.blogModelArray removeAllObjects];
-    [self.blogModelArray writeToFile:path atomically:YES];
-    return path;
-}
-
-- (void)writeIntoBlogPlist:(NSArray *)blogDetailArray {
-    
-    NSString *path = [self applicationDocumentsDirectoryFile];
-    
-    //进行持久化
-    for (int i = 0; i < 5; i++) {
-        NSDictionary *dict = [NSDictionary dictionaryWithObjects:@[[self.htmlCache substringWithRange:[[blogDetailArray objectAtIndex:i] rangeAtIndex:1]],
-                                                                   [self.htmlCache substringWithRange:[[blogDetailArray objectAtIndex:i] rangeAtIndex:2]],
-                                                                   [self.htmlCache substringWithRange:[[blogDetailArray objectAtIndex:i] rangeAtIndex:3]],
-                                                                   [self.htmlCache substringWithRange:[[blogDetailArray objectAtIndex:i] rangeAtIndex:4]]]
-                                                         forKeys:@[@"memberName",
-                                                                   @"blogURL",
-                                                                   @"blogTitle",
-                                                                   @"releaseTime"]];
-        //将字典转换成模型数据
-        BlogModel *blog = [BlogModel blogWithDict:dict];
-        [self.blogModelArray addObject:blog];
-    }
-    
-    [self.blogModelArray writeToFile:path atomically:YES];
-    
-}
-
-#pragma mark - 抓取博客代码
-- (void)catchHTMLBlogs:(int)pageIndex {
-    NSString *blogIndex = [NSString stringWithFormat:blogUrlString, pageIndex];
-    NSURL *blogURL = [NSURL URLWithString:blogIndex];
-
-    NSURLRequest *request = [NSURLRequest requestWithURL:blogURL
-                                             cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                         timeoutInterval:10.0f];
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-                               if (data) {
-                                   self.htmlCache = [[NSString alloc] initWithData:data
-                                                                          encoding:NSUTF8StringEncoding];
-                                   self.catchedBlogs = [self findedResults:self.htmlCache];
-                                   
-                                   [self writeIntoBlogPlist:self.catchedBlogs];
-                                   
-                                   [self.tableView reloadData];
-                                   [self reloadView:connectionError];
-                               } else {
-                                   [self reloadView:connectionError];
-                               }
-                           }];
+- (void)startRequest {
+    NSURL *url = [NSURL URLWithString:REQUEST_HTML];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+        if (data == nil || connectionError) {
+            [self reloadView:connectionError];
+        } else {
+            NSArray *allData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+            for (NSDictionary *dict in allData) {
+                BlogModel *oneBlog = [BlogModel blogWithDict:dict];
+                [self.blogModelArray addObject:oneBlog];
+                [self reloadView:connectionError];
+            }
+        }
+        [self.tableView reloadData];
+        for (BlogModel *model in self.blogModelArray) {
+            NSDictionary *dict = [BlogModel dictionaryWithModel:model];
+            [self.blogDictArray addObject:dict];
+        }
+        NSString *path = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"BlogList.plist"];
+        [self.blogDictArray writeToFile:path atomically:YES];
+    }];
     HUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     HUD.delegate = self;
 }
 
-- (NSArray *)findedResults:(NSString *)html {
-    
-    NSRegularExpression *regexOfBlogCatch = [[NSRegularExpression alloc] initWithPattern:blogCatchPattern
-                                                                                 options:NSRegularExpressionCaseInsensitive | NSRegularExpressionDotMatchesLineSeparators
-                                                                                   error:nil];
-    
-    NSArray *detailsOfBlog = [regexOfBlogCatch matchesInString:html
-                                                       options:NSMatchingReportCompletion
-                                                         range:NSMakeRange(0, html.length)];
-    
-    return detailsOfBlog;
+#pragma mark - 持久化相关代码
+
+- (NSString *)applicationDocumentsDirectoryEmptyFile {
+    NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *path = [documentDirectory stringByAppendingPathComponent:@"BlogList.plist"];
+    NSMutableArray *all = [[NSMutableArray alloc] initWithContentsOfFile:path];
+    [all removeAllObjects];
+    [all writeToFile:path atomically:YES];
+    return path;
 }
 
 #pragma mark - reloadView
@@ -266,22 +151,6 @@
         [self.tableView.footer endRefreshing];
         
     }
-    
-}
-
-#pragma mark - TabBar操作代码
-- (void)showTabBar {
-    if (self.tabBarController.tabBar.hidden == NO) {
-        return;
-    }
-    UIView *contentView;
-    if ([[self.tabBarController.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]]) {
-        contentView = [self.tabBarController.view.subviews objectAtIndex:1];
-    } else {
-        contentView = [self.tabBarController.view.subviews objectAtIndex:0];
-    }
-    contentView.frame = CGRectMake(contentView.bounds.origin.x, contentView.bounds.origin.y,  contentView.bounds.size.width, contentView.bounds.size.height - self.tabBarController.tabBar.frame.size.height);
-    self.tabBarController.tabBar.hidden = NO;
 }
 
 #pragma mark - MBProgressHUDDelegate
@@ -301,17 +170,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *cellIdentifier = @"BlogTitleCell";
-    BlogTitleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    NSUInteger row = [indexPath row];
+
+    BlogTitleTableViewCell *cell = [BlogTitleTableViewCell cellWithTableView:tableView];
     
     //将模型传给Cell
-    BlogModel *blog = self.blogModelArray[row];
+    BlogModel *blog = self.blogModelArray[indexPath.row];
     cell.blog = blog;
     
+    
 // /*设置表格中成员图片代码
-    NSUInteger nameAtRow = [_appDelegate.memberNameFromPlist indexOfObject:blog.memberName];
+    NSInteger nameAtRow = [_appDelegate.memberNameFromPlist indexOfObject:blog.memberName];
     NSString *imagePath = [_appDelegate.memberIconFromPlist objectAtIndex:nameAtRow];
     imagePath = [imagePath stringByAppendingString:@".JPG"];
     cell.memberIcon.image = [UIImage imageNamed:imagePath];
@@ -336,7 +204,7 @@
         detailViewController.blogURL = blog.blogURL;
         
         detailViewController.title = blog.memberName;
-
+        
     }
 }
 

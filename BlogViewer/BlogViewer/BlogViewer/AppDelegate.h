@@ -17,14 +17,11 @@
 @property (strong, nonatomic) NSDictionary *nameWithIcon;
 @property (strong, nonatomic) NSArray *memberNameFromPlist;
 @property (strong, nonatomic) NSArray *memberIconFromPlist;
-@property (strong, nonatomic) NSArray *ownBlogURLFromPlist;
+@property (nonatomic, strong) NSArray *memberIDFromPlist;
 // */
 
 @property (strong, nonatomic) UIViewController *centerViewController;
 @property (strong, nonatomic) UIViewController *nameViewController;
-
-
-- (IIViewDeckController *)generateControllerStack;
 
 @end
 

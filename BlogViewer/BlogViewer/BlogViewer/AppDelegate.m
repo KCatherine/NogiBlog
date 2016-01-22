@@ -26,7 +26,7 @@
     self.nameWithIcon = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
     self.memberNameFromPlist = [self.nameWithIcon objectForKey:@"name"];
     self.memberIconFromPlist = [self.nameWithIcon objectForKey:@"icon"];
-    self.ownBlogURLFromPlist = [self.nameWithIcon objectForKey:@"ownBlogURL"];
+    self.memberIDFromPlist = [self.nameWithIcon objectForKey:@"id"];
     // */
     
     IIViewDeckController* deckController = [self generateControllerStack];
@@ -39,7 +39,6 @@
     deckController.closeSlideAnimationDuration = 0.3f;
     
     self.window.rootViewController = deckController;
-    [self.window makeKeyAndVisible];
 
     return YES;
 }

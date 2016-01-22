@@ -2,87 +2,46 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>ownBlogURL</key>
-	<array>
-		<string>http://blog.nogizaka46.com/manatsu.akimoto/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/erika.ikuta/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/rina.ikoma/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/karin.itou/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/junna.itou/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/marika.ito/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/sayuri.inoue/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/misa.eto/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/hina.kawago/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/mahiro.kawamura/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/hinako.kitano/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/asuka.saito/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/chiharu.saito/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/yuuri.saito/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/iori.sagara/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/reika.sakurai/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/kotoko.sasaki/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/mai.shiraishi/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/mai.shinuchi/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/ayane.suzuki/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/kazumi.takayama/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/ranze.terada/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/kana.nakada/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/himeka.nakamoto/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/seira.nagashima/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/nanase.nishino/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/ami.noujo/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/nanami.hashimoto/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/hina.higuchi/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/mai.fukagawa/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/minami.hoshino/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/miona.hori/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/sayuri.matsumura/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/rena.yamazaki/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/yumi.wakatsuki/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/miria.watanabe/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/maaya.wada/smph/?p=%d</string>
-		<string>http://blog.nogizaka46.com/staff/smph/?p=%d</string>
-	</array>
 	<key>name</key>
 	<array>
-		<string>秋元真夏</string>
-		<string>生田絵梨花</string>
-		<string>生駒里奈</string>
-		<string>伊藤かりん</string>
-		<string>伊藤純奈</string>
-		<string>伊藤万理華</string>
-		<string>井上小百合</string>
-		<string>衛藤美彩</string>
-		<string>川後陽菜</string>
-		<string>川村真洋</string>
-		<string>北野日奈子</string>
-		<string>齋藤飛鳥</string>
-		<string>斎藤ちはる</string>
-		<string>斉藤優里</string>
-		<string>相楽伊織</string>
-		<string>桜井玲香</string>
-		<string>佐々木琴子</string>
-		<string>白石麻衣</string>
-		<string>新内眞衣</string>
-		<string>鈴木絢音</string>
-		<string>高山一実</string>
-		<string>寺田蘭世</string>
-		<string>中田花奈</string>
-		<string>中元日芽香</string>
-		<string>永島聖羅</string>
-		<string>西野七瀬</string>
-		<string>能條愛未</string>
-		<string>橋本奈々未</string>
-		<string>樋口日奈</string>
-		<string>深川麻衣</string>
-		<string>星野みなみ</string>
-		<string>堀未央奈</string>
-		<string>松村沙友理</string>
-		<string>山崎怜奈</string>
-		<string>若月佑美</string>
-		<string>渡辺みり愛</string>
-		<string>和田まあや</string>
-		<string>運営スタッフ</string>
+		<string>秋元 真夏</string>
+		<string>生田 絵梨花</string>
+		<string>生駒 里奈</string>
+		<string>伊藤 かりん</string>
+		<string>伊藤 純奈</string>
+		<string>伊藤 万理華</string>
+		<string>井上 小百合</string>
+		<string>衛藤 美彩</string>
+		<string>川後 陽菜</string>
+		<string>川村 真洋</string>
+		<string>北野 日奈子</string>
+		<string>齋藤 飛鳥</string>
+		<string>斎藤 ちはる</string>
+		<string>斉藤 優里</string>
+		<string>相楽 伊織</string>
+		<string>桜井 玲香</string>
+		<string>佐々木 琴子</string>
+		<string>白石 麻衣</string>
+		<string>新内 眞衣</string>
+		<string>鈴木 絢音</string>
+		<string>高山 一実</string>
+		<string>寺田 蘭世</string>
+		<string>中田 花奈</string>
+		<string>中元 日芽香</string>
+		<string>永島 聖羅</string>
+		<string>西野 七瀬</string>
+		<string>能條 愛未</string>
+		<string>橋本 奈々未</string>
+		<string>樋口 日奈</string>
+		<string>深川 麻衣</string>
+		<string>星野 みなみ</string>
+		<string>堀 未央奈</string>
+		<string>松村 沙友理</string>
+		<string>山﨑 怜奈</string>
+		<string>若月 佑美</string>
+		<string>渡辺 みり愛</string>
+		<string>和田 まあや</string>
+		<string>乃木坂46</string>
 	</array>
 	<key>icon</key>
 	<array>
@@ -124,6 +83,47 @@
 		<string>IMG_1646</string>
 		<string>IMG_1647</string>
 		<string>IMG_Staff</string>
+	</array>
+	<key>id</key>
+	<array>
+		<string>135</string>
+		<string>47</string>
+		<string>45</string>
+		<string>144</string>
+		<string>148</string>
+		<string>50</string>
+		<string>51</string>
+		<string>53</string>
+		<string>55</string>
+		<string>56</string>
+		<string>145</string>
+		<string>57</string>
+		<string>58</string>
+		<string>59</string>
+		<string>149</string>
+		<string>60</string>
+		<string>150</string>
+		<string>61</string>
+		<string>146</string>
+		<string>151</string>
+		<string>62</string>
+		<string>152</string>
+		<string>63</string>
+		<string>64</string>
+		<string>65</string>
+		<string>66</string>
+		<string>67</string>
+		<string>68</string>
+		<string>70</string>
+		<string>71</string>
+		<string>72</string>
+		<string>147</string>
+		<string>73</string>
+		<string>153</string>
+		<string>76</string>
+		<string>154</string>
+		<string>77</string>
+		<string>43</string>
 	</array>
 </dict>
 </plist>

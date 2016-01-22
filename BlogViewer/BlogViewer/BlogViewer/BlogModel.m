@@ -15,16 +15,29 @@
  */
 - (instancetype)initWithDict:(NSDictionary *)dict {
     if (self = [super init]) {
-        self.memberName = dict[@"memberName"];
-        self.blogTitle = dict[@"blogTitle"];
-        self.blogURL = dict[@"blogURL"];
-        self.releaseTime = dict[@"releaseTime"];
+        self.blogTitle = dict[@"title"];
+        self.memberName = dict[@"talent"];
+        self.blogURL = dict[@"url"];
+        self.releaseTime = dict[@"create"];
+        self.uniqueID = dict[@"aid"];
+        self.memberID = dict[@"sid"];
     }
     return self;
 }
 
 + (instancetype)blogWithDict:(NSDictionary *)dict {
     return [[self alloc] initWithDict:dict];
+}
+
++ (NSDictionary *)dictionaryWithModel:(BlogModel *)model {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"title"] = model.blogTitle;
+    dict[@"talent"] = model.memberName;
+    dict[@"url"] = model.blogURL;
+    dict[@"create"] = model.releaseTime;
+    dict[@"aid"] = model.uniqueID;
+    dict[@"sid"] = model.memberID;
+    return dict;
 }
 
 @end

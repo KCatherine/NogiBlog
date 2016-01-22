@@ -15,4 +15,6 @@
 
 @property (strong, nonatomic) BlogModel *blog;
 
++ (instancetype)cellWithTableView:(UITableView *)tableView;
+
 @end

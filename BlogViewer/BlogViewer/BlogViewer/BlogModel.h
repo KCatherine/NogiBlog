@@ -11,11 +11,14 @@
 @interface BlogModel : NSObject
 
 @property (nonatomic, copy) NSString *memberName;
+@property (nonatomic, copy) NSString *memberID;
 @property (nonatomic, copy) NSString *releaseTime;
 @property (nonatomic, copy) NSString *blogURL;
 @property (nonatomic, copy) NSString *blogTitle;
+@property (nonatomic, copy) NSString *uniqueID;
 
 - (instancetype)initWithDict:(NSDictionary *)dict;
 + (instancetype)blogWithDict:(NSDictionary *)dict;
++ (NSDictionary *)dictionaryWithModel:(BlogModel *)model;
 
 @end

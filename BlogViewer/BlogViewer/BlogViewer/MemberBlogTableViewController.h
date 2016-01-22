@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MemberBlogTableViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate>
+@interface MemberBlogTableViewController : UITableViewController
 
 @property (copy, nonatomic) NSString *toBeCatchedblogURL;
 
