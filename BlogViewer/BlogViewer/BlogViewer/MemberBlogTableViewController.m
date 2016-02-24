@@ -15,13 +15,14 @@
 #import "Reachability.h"
 #import "MBProgressHUD.h"
 #import "MJRefresh.h"
+#import "AFNetworking.h"
 
 @interface MemberBlogTableViewController () <MBProgressHUDDelegate> {
     MBProgressHUD *HUD;
 }
 
 @property (strong, nonatomic) NSMutableArray *blogModelArray;
-@property (nonatomic, strong) NSMutableArray *blogDictArray;
+@property (strong, nonatomic) NSMutableArray *blogDictArray;
 
 @end
 
@@ -48,8 +49,8 @@
 
     _appDelegate = [UIApplication sharedApplication].delegate;
     
-    [self startRequest];
-#warning 未完成的下拉刷新
+    [self refreshBlog:nil];
+#warning unfinished 未完成的下拉刷新
     self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         
     }];
@@ -58,6 +59,10 @@
     // 忽略掉底部inset
     self.tableView.footer.ignoredScrollViewContentInsetBottom = 20;
     
+    
+    //设置NavigationBar字体的颜色
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     //设置返回按钮
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationItem.backBarButtonItem = item;
@@ -67,7 +72,7 @@
 - (BOOL)isConnectionAvailable {
     
     BOOL isExistenceNetwork = YES;
-    Reachability *reach = [Reachability reachabilityWithHostName:@"www.nogizaka46.com"];
+    Reachability *reach = [Reachability reachabilityWithHostName:@"http://akbdata.com"];
     switch ([reach currentReachabilityStatus]) {
         case NotReachable:
             isExistenceNetwork = NO;
@@ -121,6 +126,39 @@
     HUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     HUD.delegate = self;
 }
+
+#pragma mark - 使用AFNetworking获得数据
+
+- (void)usingAFN {
+    
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
+    [mgr GET:self.toBeCatchedblogURL
+  parameters:nil
+    progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+         NSArray *allData = (NSArray *)responseObject;
+         for (NSDictionary *dict in allData) {
+             BlogModel *oneBlog = [BlogModel blogWithDict:dict];
+             [self.blogModelArray addObject:oneBlog];
+         }
+         [self reloadView:nil];
+         [self.tableView reloadData];
+     }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+         NSLog(@"出错");
+     }];
+    HUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view
+                               animated:YES];
+    HUD.delegate = self;
+}
+
+- (IBAction)refreshBlog:(id)sender {
+    if ([self isConnectionAvailable]) {
+//        [self startRequest];
+        [self usingAFN];
+    }
+}
+
 
 #pragma mark - reloadView
 - (void)reloadView:(NSError *)connectionError {

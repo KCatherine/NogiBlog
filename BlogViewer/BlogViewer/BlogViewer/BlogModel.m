@@ -8,6 +8,8 @@
 
 #import "BlogModel.h"
 
+#define TIME_ZONE 9*60*60
+
 @implementation BlogModel
 
 /**
@@ -15,12 +17,19 @@
  */
 - (instancetype)initWithDict:(NSDictionary *)dict {
     if (self = [super init]) {
-        self.blogTitle = dict[@"title"];
-        self.memberName = dict[@"talent"];
-        self.blogURL = dict[@"url"];
-        self.releaseTime = dict[@"create"];
-        self.uniqueID = dict[@"aid"];
-        self.memberID = dict[@"sid"];
+        _blogTitle = dict[@"title"];
+        _memberName = dict[@"talent"];
+        _blogURL = dict[@"url"];
+        _releaseTime = dict[@"create"];
+        _uniqueID = dict[@"aid"];
+        _memberID = dict[@"sid"];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+        NSDate *dataTime = [dateFormatter dateFromString:_releaseTime];
+        
+        NSDate *realTime = [dataTime dateByAddingTimeInterval:TIME_ZONE];
+        _releaseTime = [dateFormatter stringFromDate:realTime];
     }
     return self;
 }

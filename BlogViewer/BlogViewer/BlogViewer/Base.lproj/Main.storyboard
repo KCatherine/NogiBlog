@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="p9f-Tb-AQI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="p9f-Tb-AQI">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
@@ -101,10 +101,9 @@
             </objects>
             <point key="canvasLocation" x="-790" y="490"/>
         </scene>
-        <!--最新动态-->
+        <!--New-->
         <scene sceneID="ANS-3H-04f">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8qA-vt-gO7" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="TopFiveVC" id="war-Rj-rJt" customClass="ViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="103" sectionHeaderHeight="22" sectionFooterHeight="22" id="046-hh-2Og">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -225,11 +224,19 @@
                             <outlet property="delegate" destination="war-Rj-rJt" id="fys-mc-KFG"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="最新动态" id="wCL-o0-bjA"/>
+                    <navigationItem key="navigationItem" title="New" id="wCL-o0-bjA">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="ocm-8L-JcD">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="refreshBlogs:" destination="war-Rj-rJt" id="M0u-d9-sg0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="046-hh-2Og" id="kFW-wg-aKW"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8qA-vt-gO7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1824" y="490"/>
         </scene>
@@ -419,7 +426,7 @@
                     <navigationItem key="navigationItem" title="Member" id="mCw-gf-RLz">
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="uFx-Kj-29H">
                             <connections>
-                                <action selector="RefreshBlog:" destination="HCP-oR-Loo" id="C3M-6j-ejZ"/>
+                                <action selector="refreshBlog:" destination="HCP-oR-Loo" id="5UF-oG-E70"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -464,7 +471,7 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rdV-XD-l1M">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem image="arrow_back_32px_1181650_easyicon.net.png" id="IeB-T0-R6k">
+                                    <barButtonItem image="navigationbar_back" id="IeB-T0-R6k">
                                         <connections>
                                             <action selector="backToPage:" destination="pff-ro-jbQ" id="yEf-fI-TJ9"/>
                                         </connections>
@@ -556,7 +563,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow_back_32px_1181650_easyicon.net.png" width="32" height="32"/>
+        <image name="navigationbar_back" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="pzo-sg-fQt"/>

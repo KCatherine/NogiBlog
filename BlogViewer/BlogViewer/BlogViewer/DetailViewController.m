@@ -24,32 +24,18 @@
     [super viewDidLoad];
 
     self.detailWebView.delegate = self;
-    NSLog(@"%@", self.blogURL);
+
     NSURL *url = [NSURL URLWithString:self.blogURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    
+    
     [self showActivityIndicatorViewInNavigationItem];
     if ([self isConnectionAvailable]) {
         [self.detailWebView loadRequest:request];
     }
 }
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    //[self hideTabBar];
-    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
-    }
-}
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
-    }
-}
-*/
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
@@ -105,6 +91,7 @@
 
 - (void)handleLongTouch {
 //    NSLog(@"%@", _imgURL);
+    
     if (_imgURL && _gesState == GESTURE_STATE_START) {
 
         UIAlertController *sheet = [UIAlertController alertControllerWithTitle:@"保存到手机"
@@ -113,30 +100,16 @@
         UIAlertAction *defaultButton = [UIAlertAction actionWithTitle:@"确定"
                                                                 style:UIAlertActionStyleDefault
                                                               handler:^(UIAlertAction *action) {
-                                                                  /*
-                                                                  if (_imgURL) {
-                                                                      NSLog(@"imgurl = %@", _imgURL);
-                                                                  }
-                                                                  */
+//                                                                  NSLog(@"%@", [NSThread currentThread]);
                                                                   NSString *urlToSave = [self.detailWebView stringByEvaluatingJavaScriptFromString:_imgURL];
-                                                                  /*
-                                                                  NSLog(@"image url = %@", urlToSave);
-                                                                  */
                                                                   NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlToSave]];
-                                                                  UIImage* image = [UIImage imageWithData:data];
-                                                                  
-                                                                  //UIImageWriteToSavedPhotosAlbum(image, nil, nil,nil);
-                                                                  /*
-                                                                  NSLog(@"UIImageWriteToSavedPhotosAlbum = %@", urlToSave);
-                                                                  */
-                                                                  
-                                                                  UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+                                                                  UIImage *imageToSave = [UIImage imageWithData:data];
+                                                                  UIImageWriteToSavedPhotosAlbum(imageToSave, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
                                                               }];
         UIAlertAction *cancelButton = [UIAlertAction actionWithTitle:@"取消"
                                                                style:UIAlertActionStyleCancel
-                                                             handler:^(UIAlertAction *action) {
-                                                                 
-                                                             }];
+                                                             handler:nil];
+        
         [sheet addAction:defaultButton];
         [sheet addAction:cancelButton];
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
@@ -174,16 +147,6 @@
         [self showAlert:@"保存成功！"];
     }
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark - Webview代理方法
 
@@ -241,7 +204,7 @@
                     _imgURL = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).src", ptX, ptY];
                 }
                 if (_imgURL) {
-                    _timer = [NSTimer scheduledTimerWithTimeInterval:1.25 target:self selector:@selector(handleLongTouch) userInfo:nil repeats:NO];
+                    _timer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(handleLongTouch) userInfo:nil repeats:NO];
                 }
             }
             else if ([(NSString *)[components objectAtIndex:2] isEqualToString:@"move"])
@@ -276,20 +239,6 @@
     // Remove HUD from screen when the HUD was hidded
     [HUD removeFromSuperview];
     HUD = nil;
-}
-
-- (void)hideTabBar {
-    if (self.tabBarController.tabBar.hidden == YES) {
-        return;
-    }
-    UIView *contentView;
-    if ([[self.tabBarController.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]]) {
-        contentView = [self.tabBarController.view.subviews objectAtIndex:1];
-    } else {
-        contentView = [self.tabBarController.view.subviews objectAtIndex:0];
-    }
-    contentView.frame = CGRectMake(contentView.bounds.origin.x,  contentView.bounds.origin.y,  contentView.bounds.size.width, contentView.bounds.size.height + self.tabBarController.tabBar.frame.size.height);
-    self.tabBarController.tabBar.hidden = YES;
 }
 
 - (IBAction)backToPage:(id)sender {

@@ -10,15 +10,14 @@
 #import "Reachability.h"
 #import "MBProgressHUD.h"
 
-@interface DetailViewController : UIViewController<UIWebViewDelegate, UIPopoverPresentationControllerDelegate>{
-    NSTimer *_timer;    // 用于UIWebView保存图片
-    int _gesState;      // 用于UIWebView保存图片
-    NSString *_imgURL;  // 用于UIWebView保存图片
-}
-
-@property (copy, nonatomic) NSString *blogURL;
-
-@end
+enum
+{
+    GESTURE_STATE_NONE = 0,
+    GESTURE_STATE_START = 1,
+    GESTURE_STATE_MOVE = 2,
+    GESTURE_STATE_END = 4,
+    GESTURE_STATE_ACTION = (GESTURE_STATE_START | GESTURE_STATE_END),
+};
 
 static NSString* const kTouchJavaScriptString=
 @"document.ontouchstart=function(event){\
@@ -34,11 +33,13 @@ document.location=\"myweb:touch:cancel\";};\
 document.ontouchend=function(event){\
 document.location=\"myweb:touch:end\";};";
 
-enum
-{
-    GESTURE_STATE_NONE = 0,
-    GESTURE_STATE_START = 1,
-    GESTURE_STATE_MOVE = 2,
-    GESTURE_STATE_END = 4,
-    GESTURE_STATE_ACTION = (GESTURE_STATE_START | GESTURE_STATE_END),
-};
+@interface DetailViewController : UIViewController<UIWebViewDelegate, UIPopoverPresentationControllerDelegate>{
+    NSTimer *_timer;    // 用于UIWebView保存图片
+    int _gesState;      // 用于UIWebView保存图片
+    NSString *_imgURL;  // 用于UIWebView保存图片
+}
+
+@property (copy, nonatomic) NSString *blogURL;
+
+@end
+
